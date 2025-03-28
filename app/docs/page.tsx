@@ -20,6 +20,7 @@ import {
   Search,
   Zap,
   Wrench,
+  Video,
 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -86,6 +87,28 @@ export default function DocsPage() {
       badge: "v1",
       examples: ["Shorten long URLs", "Simple URL parameter", "JSON response with shortened URL"],
       keywords: ["tinyurl", "url shortener", "short link", "link", "shorten"],
+      category: "tools",
+    },
+    {
+      title: "Brat API",
+      description: "Generate images based on text input with our simple and secure API.",
+      icon: <Image className="h-8 w-8 text-primary" />,
+      href: "/docs/brat",
+      iconBg: "bg-primary/10",
+      badge: "v1",
+      examples: ["Generate images from text", "Secure API key handling", "Direct image response"],
+      keywords: ["brat", "image", "generate", "text-to-image", "ai"],
+      category: "tools",
+    },
+    {
+      title: "Brat Video API",
+      description: "Generate videos based on text input with our simple and secure API.",
+      icon: <Video className="h-8 w-8 text-primary" />,
+      href: "/docs/bratvideo",
+      iconBg: "bg-primary/10",
+      badge: "v1",
+      examples: ["Generate videos from text", "Secure API key handling", "Direct video response"],
+      keywords: ["brat", "video", "generate", "text-to-video", "ai"],
       category: "tools",
     },
     {
