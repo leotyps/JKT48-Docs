@@ -78,6 +78,17 @@ export default function DocsPage() {
       category: "tools",
     },
     {
+      title: "TinyURL API",
+      description: "Shorten any URL using the TinyURL service with VTX Group as the creator watermark.",
+      icon: <ExternalLink className="h-8 w-8 text-primary" />,
+      href: "/docs/tinyurl",
+      iconBg: "bg-primary/10",
+      badge: "v1",
+      examples: ["Shorten long URLs", "Simple URL parameter", "JSON response with shortened URL"],
+      keywords: ["tinyurl", "url shortener", "short link", "link", "shorten"],
+      category: "tools",
+    },
+    {
       title: "Instagram Downloader",
       description: "Download media from Instagram posts by providing the post URL.",
       icon: <Download className="h-8 w-8 text-primary" />,
@@ -122,8 +133,31 @@ export default function DocsPage() {
       badge: "v1",
       examples: ["Search anime by title", "Filter by genre and rating", "Get detailed anime information"],
       keywords: ["anime", "jikan", "search", "filter", "genre", "rating"],
-      category: "other",
+      category: "anime",
       popular: true,
+    },
+    {
+      title: "Otakudesu API",
+      description: "Access anime data from Otakudesu including ongoing and completed anime listings.",
+      icon: <Tv className="h-8 w-8 text-primary" />,
+      href: "/docs/otakudesu",
+      iconBg: "bg-primary/10",
+      badge: "v1",
+      examples: ["Get ongoing anime", "Get completed anime", "Search anime by keyword"],
+      keywords: ["anime", "otakudesu", "ongoing", "completed", "episodes", "genre"],
+      category: "anime",
+    },
+    {
+      title: "Waifu API",
+      description: "Access anime-themed images categorized under SFW (Safe for Work).",
+      icon: <Image className="h-8 w-8 text-primary" />,
+      href: "/docs/waifu",
+      iconBg: "bg-primary/10",
+      badge: "v1.1",
+      examples: ["Get random waifu images", "Multiple image categories", "Direct image responses"],
+      keywords: ["anime", "waifu", "neko", "images", "sfw"],
+      category: "anime",
+      featured: true,
     },
   ]
 
@@ -143,10 +177,10 @@ export default function DocsPage() {
       count: apis.filter((api) => api.category === "download").length,
     },
     {
-      id: "other",
-      name: "Other",
+      id: "anime",
+      name: "Anime",
       icon: <Tv className="h-4 w-4 mr-2" />,
-      count: apis.filter((api) => api.category === "other").length,
+      count: apis.filter((api) => api.category === "anime").length,
     },
   ]
 
@@ -418,15 +452,15 @@ export default function DocsPage() {
                         <Badge
                           variant="secondary"
                           className={`
-                            flex items-center gap-1 text-xs font-medium
-                            ${api.category === "tools" ? "bg-blue-500/10 text-blue-600 dark:text-blue-400" : ""}
-                            ${api.category === "download" ? "bg-green-500/10 text-green-600 dark:text-green-400" : ""}
-                            ${api.category === "other" ? "bg-purple-500/10 text-purple-600 dark:text-purple-400" : ""}
-                          `}
+                          flex items-center gap-1 text-xs font-medium
+                          ${api.category === "tools" ? "bg-blue-500/10 text-blue-600 dark:text-blue-400" : ""}
+                          ${api.category === "download" ? "bg-green-500/10 text-green-600 dark:text-green-400" : ""}
+                          ${api.category === "anime" ? "bg-purple-500/10 text-purple-600 dark:text-purple-400" : ""}
+                        `}
                         >
                           {api.category === "tools" && <Wrench className="h-3 w-3 mr-1" />}
                           {api.category === "download" && <Download className="h-3 w-3 mr-1" />}
-                          {api.category === "other" && <Tv className="h-3 w-3 mr-1" />}
+                          {api.category === "anime" && <Tv className="h-3 w-3 mr-1" />}
                           {api.category.charAt(0).toUpperCase() + api.category.slice(1)}
                         </Badge>
                       </div>

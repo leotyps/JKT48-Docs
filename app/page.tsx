@@ -359,7 +359,7 @@ export default function HomePage() {
                     <span>Comprehensive documentation</span>
                   </li>
                 </ul>
-                <div className="pt-4 flex justify-center sm:justify-start">
+                <div className="pt-4 flex justify-center">
                   <Link href="/docs">
                     <Button className="rounded-lg">
                       View All APIs
@@ -374,11 +374,11 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="relative"
+                className="relative w-full max-w-full overflow-hidden"
               >
                 <div className="absolute -inset-4 rounded-xl bg-primary/5 -z-10 blur-sm"></div>
-                <div className="bg-background border rounded-xl p-6 shadow-lg">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="bg-background border rounded-xl p-4 md:p-6 shadow-lg overflow-x-auto">
+                  <div className="flex items-center justify-between mb-3 md:mb-4">
                     <div className="flex space-x-2">
                       <div className="w-3 h-3 rounded-full bg-red-500"></div>
                       <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -386,7 +386,7 @@ export default function HomePage() {
                     </div>
                     <div className="text-xs text-muted-foreground">Terminal</div>
                   </div>
-                  <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
+                  <pre className="bg-muted p-2 md:p-4 rounded-md overflow-x-auto text-xs md:text-sm whitespace-pre-wrap md:whitespace-pre">
                     <code className="text-sm">
                       <span className="text-muted-foreground">$</span> <span className="text-primary">curl</span> -X GET
                       "https://api.vtxgroup.my.id/api/v1/weather?city=London"
@@ -401,7 +401,7 @@ export default function HomePage() {
 },
 "weather": [
 {
-  "description": "clear sky"
+"description": "clear sky"
 }
 ]
 }`}

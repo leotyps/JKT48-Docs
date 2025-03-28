@@ -64,42 +64,8 @@ export function Footer() {
             <h3 className="text-sm font-medium">API Services</h3>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/docs/weather"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Weather API
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/docs/igdownloader"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Instagram Downloader
-                </Link>
-              </li>
-              <li>
-                <Link href="/docs/anime" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Anime API
-                </Link>
-              </li>
-              <li>
-                <Link href="/docs/ssweb" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Screenshot Website
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/docs/tiktok"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  TikTok Downloader
-                </Link>
-              </li>
-              <li>
-                <Link href="/docs/yt" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  YouTube Downloader
+                <Link href="/docs" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  API List
                 </Link>
               </li>
             </ul>
