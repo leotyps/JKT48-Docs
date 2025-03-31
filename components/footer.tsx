@@ -20,7 +20,7 @@ export function Footer() {
               <Cloud className="h-5 w-5 text-primary" />
             </motion.div>
             <p className="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
-              JKT48CONNECT API
+              JKT48 API
             </p>
           </div>
 
@@ -119,7 +119,7 @@ export function Footer() {
 
         <div className="border-t pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground text-center md:text-left">
-            © {currentYear} JKT48CONNECT API. All rights reserved.
+            © {currentYear} JKT48 API. All rights reserved.
           </p>
           <div className="flex gap-4">
             <Link href="/terms" className="text-xs text-muted-foreground hover:text-primary transition-colors">
