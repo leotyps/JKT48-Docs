@@ -20,13 +20,13 @@ export function Footer() {
               <Cloud className="h-5 w-5 text-primary" />
             </motion.div>
             <p className="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
-              VTX API
+              JKT48CONNECT API
             </p>
           </div>
 
           <div className="flex gap-4">
             <motion.a
-              href="https://discord.gg/aQQutU7ACd"
+              href="https://discord.gg/kke7VpNPfr"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ y: -3 }}
@@ -37,7 +37,7 @@ export function Footer() {
               <span className="sr-only">Discord</span>
             </motion.a>
             <motion.a
-              href="https://github.com/vtxcommunity"
+              href="https://github.com/zenova-id"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ y: -3 }}
@@ -48,7 +48,7 @@ export function Footer() {
               <span className="sr-only">GitHub</span>
             </motion.a>
             <motion.a
-              href="mailto:fort@vtxgroup.my.id"
+              href="mailto:contact@jkt48connect.my.id"
               whileHover={{ y: -3 }}
               className="p-2 rounded-full bg-muted/50 hover:bg-muted"
               aria-label="Email"
@@ -97,7 +97,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="https://vtxgroup.my.id"
+                  href="https://jkt48connect.web.id"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
@@ -107,7 +107,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:fort@vtxgroup.my.id"
+                  href="mailto:contact@vtxgroup.my.id"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   Contact
@@ -119,7 +119,7 @@ export function Footer() {
 
         <div className="border-t pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground text-center md:text-left">
-            © {currentYear} VTX API. All rights reserved.
+            © {currentYear} JKT48CONNECT API. All rights reserved.
           </p>
           <div className="flex gap-4">
             <Link href="/terms" className="text-xs text-muted-foreground hover:text-primary transition-colors">
