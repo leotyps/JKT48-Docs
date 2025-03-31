@@ -58,7 +58,7 @@ export default function DocsPage() {
     {
       title: "Live API",
       description: "Get accurate live jkt48 data in real-time idn and also showroom directly.",
-      icon: <Cloud className="h-8 w-8 text-primary" />,
+      icon: <Video className="h-8 w-8 text-primary" />,
       href: "/docs/weather",
       iconBg: "bg-primary/10",
       badge: "v3.0.14",
@@ -70,7 +70,7 @@ export default function DocsPage() {
     {
       title: "IDN API",
       description: "all live member data in real time on the IDN application platform.",
-      icon: <Image className="h-8 w-8 text-primary" />,
+      icon: <Video className="h-8 w-8 text-primary" />,
       href: "/docs/ssweb",
       iconBg: "bg-primary/10",
       badge: "v3.0.14",
@@ -81,7 +81,7 @@ export default function DocsPage() {
     {
       title: "Showroom API",
       description: "All live JKT48 member data in real time on the Showroom application.",
-      icon: <ExternalLink className="h-8 w-8 text-primary" />,
+      icon: <Video className="h-8 w-8 text-primary" />,
       href: "/docs/tinyurl",
       iconBg: "bg-primary/10",
       badge: "v3.0.14",
@@ -92,7 +92,7 @@ export default function DocsPage() {
     {
       title: "Recent Live API",
       description: "Displays data on JKT48 members who previously went live along with the total nominal gift.",
-      icon: <ExternalLink className="h-8 w-8 text-primary" />,
+      icon: <Wrench className="h-8 w-8 text-primary" />,
       href: "/docs/tinyurl",
       iconBg: "bg-primary/10",
       badge: "v3.0.14",
