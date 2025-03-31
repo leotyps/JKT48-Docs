@@ -113,7 +113,7 @@ export default function HomePage() {
                   <Cloud className="h-10 w-10 text-primary" />
                 </motion.div>
                 <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
-                  VTX API Documentation
+                  JKT48 API Documentation
                 </h1>
                 <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl mt-4">
                   Powerful, reliable, and easy to integrate API services for your applications.
@@ -168,12 +168,12 @@ export default function HomePage() {
                 <div className="p-3 bg-primary/10 rounded-full w-fit mb-6">
                   <Cloud className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3">Weather API</h3>
+                <h3 className="text-2xl font-bold mb-3">Live API</h3>
                 <p className="text-muted-foreground mb-6 flex-grow">
-                  Get accurate weather data for any city around the world with our simple and reliable Weather API.
+                  Get accurate live jkt48 data in real-time idn and also showroom directly.
                 </p>
                 <div className="mt-auto pt-4">
-                  <Link href="/docs/weather">
+                  <Link href="/docs/live">
                     <Button
                       variant="outline"
                       className="w-full group rounded-lg border-primary/20 hover:border-primary hover:bg-primary/5"
@@ -194,13 +194,12 @@ export default function HomePage() {
                 <div className="p-3 bg-primary/10 rounded-full w-fit mb-6">
                   <Download className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3">Instagram Downloader</h3>
+                <h3 className="text-2xl font-bold mb-3">IDN API</h3>
                 <p className="text-muted-foreground mb-6 flex-grow">
-                  Download media from Instagram posts by simply providing the post URL with our Instagram Downloader
-                  API.
+                  all live member data in real time on the IDN application platform.
                 </p>
                 <div className="mt-auto pt-4">
-                  <Link href="/docs/igdownloader">
+                  <Link href="/docs/idn">
                     <Button
                       variant="outline"
                       className="w-full group rounded-lg border-primary/20 hover:border-primary hover:bg-primary/5"
@@ -221,12 +220,12 @@ export default function HomePage() {
                 <div className="p-3 bg-primary/10 rounded-full w-fit mb-6">
                   <Tv className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3">Anime API</h3>
+                <h3 className="text-2xl font-bold mb-3">Showroom API</h3>
                 <p className="text-muted-foreground mb-6 flex-grow">
-                  Access a vast collection of anime data with powerful search and filtering capabilities.
+                  All live JKT48 member data in real time on the Showroom application.
                 </p>
                 <div className="mt-auto pt-4">
-                  <Link href="/docs/anime">
+                  <Link href="/docs/showroom">
                     <Button
                       variant="outline"
                       className="w-full group rounded-lg border-primary/20 hover:border-primary hover:bg-primary/5"
@@ -247,12 +246,12 @@ export default function HomePage() {
                 <div className="p-3 bg-primary/10 rounded-full w-fit mb-6">
                   <Image className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3">Screenshot Website</h3>
+                <h3 className="text-2xl font-bold mb-3">Recent Live API</h3>
                 <p className="text-muted-foreground mb-6 flex-grow">
-                  Capture screenshots of any website by simply providing the URL with our Screenshot Website API.
+                Displays data on JKT48 members who previously went live along with the total nominal gift.
                 </p>
                 <div className="mt-auto pt-4">
-                  <Link href="/docs/ssweb">
+                  <Link href="/docs/recent">
                     <Button
                       variant="outline"
                       className="w-full group rounded-lg border-primary/20 hover:border-primary hover:bg-primary/5"
@@ -389,22 +388,33 @@ export default function HomePage() {
                   <pre className="bg-muted p-2 md:p-4 rounded-md overflow-x-auto text-xs md:text-sm whitespace-pre-wrap md:whitespace-pre">
                     <code className="text-sm">
                       <span className="text-muted-foreground">$</span> <span className="text-primary">curl</span> -X GET
-                      "https://api.vtxgroup.my.id/api/v1/weather?city=London"
+                      "https://api.jkt48connect.my.id/api/live?api_key=valzz"
                       <br />
                       <br />
                       <span className="text-muted-foreground">// Response</span>
                       <br />
-                      {`{
-"name": "London",
-"main": {
-"temp": 15.5
-},
-"weather": [
-{
-"description": "clear sky"
-}
-]
-}`}
+                      {`[
+  {
+    "name": "Fritzy",
+    "img": "https://cdn.idntimes.com/content-images/post/20250331/717109e0-a064-4f15-8187-5c4d46e56a58-250331190058.jpg",
+    "img_alt": "https://cdn.idn.media/idnaccount/avatar/500/f4d25811b1b50effd560fb480cac8ba0.webp?v=1712299807",
+    "url_key": "jkt48_fritzy",
+    "slug": "hii-250331190058",
+    "room_id": 510011,
+    "is_graduate": false,
+    "is_group": false,
+    "chat_room_id": "arn:aws:ivschat:us-east-1:050891932989:room/dsKjuKRqfoRE",
+    "started_at": "2025-03-31T12:01:07.000Z",
+    "streaming_url_list": [
+      {
+        "label": "original",
+        "quality": 1,
+        "url": "https://4b964ca68cf1.us-east-1.playback.live-video.net/api/video/v1/us-east-1.050891932989.channel.K9fM2uTS2hX3.m3u8"
+      }
+    ],
+    "type": "idn"
+  }
+]`}
                     </code>
                   </pre>
                 </div>
