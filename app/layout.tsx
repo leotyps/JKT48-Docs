@@ -9,8 +9,8 @@ import { Analytics } from "@vercel/analytics/react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "VTX API Documentation",
-  description: "Comprehensive documentation for VTX API services",
+  title: "JKT48 API Documentation",
+  description: "Comprehensive documentation for JKT48 API services",
     generator: 'v0.dev'
 }
 
