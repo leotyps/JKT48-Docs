@@ -25,10 +25,10 @@ export default function PrivacyPage() {
         </div>
 
         <div className="prose prose-blue dark:prose-invert max-w-none">
-          <p className="text-lg">Last updated: March 28, 2025</p>
+          <p className="text-lg">Last updated: March 31, 2025</p>
 
           <p>
-            VTX Group ("us", "we", or "our") operates the VTX API services. This page informs you of our policies
+            JKT48Connect ("us", "we", or "our") operates the JKT48 API services. This page informs you of our policies
             regarding the collection, use, and disclosure of Personal Information when you use our Service.
           </p>
 
@@ -124,8 +124,8 @@ export default function PrivacyPage() {
 
           <p>
             If you have any questions about this Privacy Policy, please contact us at{" "}
-            <a href="mailto:fort@vtxgroup.my.id" className="text-primary hover:underline">
-              fort@vtxgroup.my.id
+            <a href="mailto:contact@jkt48connect.my.id" className="text-primary hover:underline">
+              contact@jkt48connect.my.id
             </a>
             .
           </p>
