@@ -63,7 +63,7 @@ export function Header() {
             <Cloud className="h-6 w-6 text-primary" />
           </motion.div>
           <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
-            JKT48CONNECT API
+            JKT48 API
           </span>
         </Link>
 
@@ -108,7 +108,7 @@ export function Header() {
               <SheetHeader className="mb-6">
                 <SheetTitle className="flex items-center gap-2">
                   <Cloud className="h-5 w-5 text-primary" />
-                  <span className="font-bold">JKT48CONNECT API</span>
+                  <span className="font-bold">JKT48 API</span>
                 </SheetTitle>
               </SheetHeader>
               <div className="flex flex-col gap-6">
