@@ -107,7 +107,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:contact@vtxgroup.my.id"
+                  href="mailto:contact@jkt48connect.my.id"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   Contact
