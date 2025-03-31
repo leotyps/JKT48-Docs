@@ -28,8 +28,8 @@ export default function TermsPage() {
           <p className="text-lg">Last updated: March 28, 2025</p>
 
           <p>
-            Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the VTX API services
-            operated by VTX Group.
+            Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the JKT48 API services
+            operated by JKT48Connect and ZENOVA-ID.
           </p>
 
           <p>
@@ -47,7 +47,7 @@ export default function TermsPage() {
           <h2 className="text-2xl font-bold mt-8">1. Use of Service</h2>
 
           <p>
-            VTX API provides various API services that allow users to access and retrieve data from different sources.
+           JKT48 API provides various API services that allow users to access and retrieve data from different sources.
             By using our services, you agree to:
           </p>
 
@@ -73,7 +73,7 @@ export default function TermsPage() {
 
           <p>
             The service and its original content, features, and functionality are and will remain the exclusive property
-            of VTX Group. The service is protected by copyright, trademark, and other laws of both Indonesia and foreign
+            of JKT48Connect. The service is protected by copyright, trademark, and other laws of both Indonesia and foreign
             countries.
           </p>
 
@@ -87,7 +87,7 @@ export default function TermsPage() {
           <h2 className="text-2xl font-bold mt-8">5. Limitation of Liability</h2>
 
           <p>
-            In no event shall VTX Group, nor its directors, employees, partners, agents, suppliers, or affiliates, be
+            In no event shall JKT48Connect, nor its directors, employees, partners, agents, suppliers, or affiliates, be
             liable for any indirect, incidental, special, consequential or punitive damages, including without
             limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to
             or use of or inability to access or use the Service.
@@ -105,8 +105,8 @@ export default function TermsPage() {
 
           <p>
             If you have any questions about these Terms, please contact us at{" "}
-            <a href="mailto:fort@vtxgroup.my.id" className="text-primary hover:underline">
-              fort@vtxgroup.my.id
+            <a href="mailto:support@jkt48connect.my.id" className="text-primary hover:underline">
+              support@jkt48connect.my.id
             </a>
             .
           </p>
