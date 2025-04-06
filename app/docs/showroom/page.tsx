@@ -92,7 +92,7 @@ export default function ShowroomDocPage() {
             <div className="flex items-center gap-2">
               <h1 className="text-3xl font-bold tracking-tight">JKT48 Showroom API Documentation</h1>
               <Badge variant="outline" className="ml-2">
-                v1
+                v3.0.14
               </Badge>
             </div>
             <p className="text-muted-foreground">
