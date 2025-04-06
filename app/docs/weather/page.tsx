@@ -84,7 +84,7 @@ export default function LiveStreamingDocPage() {
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <h1 className="text-3xl font-bold tracking-tight">Live Streaming API Documentation</h1>
-              <Badge variant="outline" className="ml-2">v1</Badge>
+              <Badge variant="outline" className="ml-2">v3.0.14</Badge>
             </div>
             <p className="text-muted-foreground">Fetch complete live streaming data for JKT48 members across YouTube, IDN Platforms, and Showroom.</p>
           </div>
