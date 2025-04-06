@@ -89,7 +89,7 @@ export default function LiveStreamingDocPage() {
             <p className="text-muted-foreground">Fetch complete live streaming data for JKT48 members across YouTube, IDN Platforms, and Showroom.</p>
           </div>
 
-          <ApiBaseUrl url="https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY" />
+          <ApiBaseUrl url="https://api.jkt48connect.my.id/api/live" />
 
           <Separator />
 
