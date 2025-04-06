@@ -11,7 +11,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { ApiBaseUrl } from "@/components/api-base-url"
 import { DocNavigation } from "@/components/doc-navigation"
 
-export default function TinyURLDocPage() {
+export default function ShowroomDocPage() {
   const [activeSection, setActiveSection] = useState("overview")
   const [copied, setCopied] = useState(false)
 
@@ -90,17 +90,17 @@ export default function TinyURLDocPage() {
         >
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <h1 className="text-3xl font-bold tracking-tight">TinyURL API Documentation</h1>
+              <h1 className="text-3xl font-bold tracking-tight">JKT48 Showroom API Documentation</h1>
               <Badge variant="outline" className="ml-2">
                 v1
               </Badge>
             </div>
             <p className="text-muted-foreground">
-              Shorten any URL using the TinyURL service with VTX Group as the creator watermark.
+              Get real-time information about JKT48 members and official accounts currently live on Showroom.
             </p>
           </div>
 
-          <ApiBaseUrl url="https://api.vtxgroup.my.id/api/v1" />
+          <ApiBaseUrl url="https://api.jkt48connect.my.id/api/live" />
 
           <Separator />
 
@@ -109,16 +109,17 @@ export default function TinyURLDocPage() {
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">Overview</h2>
               <p>
-                The TinyURL API allows you to shorten any URL using the{" "}
+                The JKT48 Showroom API provides real-time information about JKT48 members and official accounts 
+                currently streaming live on the{" "}
                 <a
-                  href="https://tinyurl.com"
+                  href="https://www.showroom-live.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline"
                 >
-                  TinyURL
+                  Showroom
                 </a>{" "}
-                service while including VTX Group as the creator watermark.
+                platform. Access live stream data including room IDs, viewers count, and stream details.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                 <div className="border rounded-lg p-4 bg-card">
@@ -126,15 +127,19 @@ export default function TinyURLDocPage() {
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-center">
                       <ArrowRight className="h-4 w-4 mr-2 text-primary" />
-                      Shorten long URLs
+                      Real-time live stream detection
                     </li>
                     <li className="flex items-center">
                       <ArrowRight className="h-4 w-4 mr-2 text-primary" />
-                      Simple and easy-to-use API
+                      JKT48 member-specific data
                     </li>
                     <li className="flex items-center">
                       <ArrowRight className="h-4 w-4 mr-2 text-primary" />
-                      VTX Group watermark included
+                      Official JKT48 account coverage
+                    </li>
+                    <li className="flex items-center">
+                      <ArrowRight className="h-4 w-4 mr-2 text-primary" />
+                      Viewer count and engagement metrics
                     </li>
                   </ul>
                 </div>
@@ -143,7 +148,7 @@ export default function TinyURLDocPage() {
                   <p className="text-sm mb-2">Make a GET request to:</p>
                   <div className="relative">
                     <code className="text-xs block bg-muted p-2 rounded overflow-x-auto whitespace-pre-wrap break-all">
-                      https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://example.com
+                      https://api.jkt48connect.my.id/api/live/showroom?api_key=YOUR_API_KEY
                     </code>
                   </div>
                 </div>
@@ -157,7 +162,7 @@ export default function TinyURLDocPage() {
               <h2 className="text-2xl font-bold">Endpoints</h2>
 
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold">Create TinyURL</h3>
+                <h3 className="text-xl font-semibold">Get Live Showroom Data</h3>
                 <div className="space-y-2">
                   <h4 className="text-lg font-medium">Endpoint</h4>
                   <div className="relative">
@@ -165,12 +170,12 @@ export default function TinyURLDocPage() {
                       variant="ghost"
                       size="icon"
                       className="absolute top-2 right-2 h-8 w-8"
-                      onClick={() => copyToClipboard("GET /tinyurl")}
+                      onClick={() => copyToClipboard("GET /showroom")}
                     >
                       <Copy className="h-4 w-4" />
                     </Button>
                     <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                      <code className="text-sm">GET /tinyurl</code>
+                      <code className="text-sm">GET /showroom</code>
                     </pre>
                   </div>
                 </div>
@@ -189,10 +194,10 @@ export default function TinyURLDocPage() {
                       </TableHeader>
                       <TableBody>
                         <TableRow>
-                          <TableCell className="font-mono">url</TableCell>
+                          <TableCell className="font-mono">api_key</TableCell>
                           <TableCell>string</TableCell>
                           <TableCell>Yes</TableCell>
-                          <TableCell>The original URL to be shortened</TableCell>
+                          <TableCell>Your API authentication key</TableCell>
                         </TableRow>
                       </TableBody>
                     </Table>
@@ -207,14 +212,14 @@ export default function TinyURLDocPage() {
                       size="icon"
                       className="absolute top-2 right-2 h-8 w-8"
                       onClick={() =>
-                        copyToClipboard("GET https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://example.com")
+                        copyToClipboard("GET https://api.jkt48connect.my.id/api/live/showroom?api_key=YOUR_API_KEY")
                       }
                     >
                       <Copy className="h-4 w-4" />
                     </Button>
                     <pre className="bg-muted p-4 rounded-md overflow-x-auto">
                       <code className="text-sm">
-                        GET https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://example.com
+                        GET https://api.jkt48connect.my.id/api/live/showroom?api_key=YOUR_API_KEY
                       </code>
                     </pre>
                   </div>
@@ -230,9 +235,30 @@ export default function TinyURLDocPage() {
                       onClick={() =>
                         copyToClipboard(`{
   "success": true,
-  "originalUrl": "https://example.com",
-  "tinyUrl": "https://tinyurl.com/abc123",
-  "creator": "VTX Group"
+  "timestamp": "2025-04-06T14:30:45Z",
+  "count": 2,
+  "lives": [
+    {
+      "name": "Gita Sekar Andarini",
+      "roomId": "318064",
+      "roomUrlKey": "gita_jkt48",
+      "isLive": true,
+      "viewers": 1243,
+      "startedAt": "2025-04-06T13:45:22Z",
+      "thumbnailUrl": "https://image.showroom-cdn.com/showroom-prod/image/room/318064_thumbnail.jpg",
+      "isOfficial": true
+    },
+    {
+      "name": "JKT48 Official",
+      "roomId": "317778",
+      "roomUrlKey": "jkt48_official",
+      "isLive": true,
+      "viewers": 3682,
+      "startedAt": "2025-04-06T14:00:00Z",
+      "thumbnailUrl": "https://image.showroom-cdn.com/showroom-prod/image/room/317778_thumbnail.jpg",
+      "isOfficial": true
+    }
+  ]
 }`)
                       }
                     >
@@ -242,9 +268,30 @@ export default function TinyURLDocPage() {
                       <code className="text-sm">
                         {`{
   "success": true,
-  "originalUrl": "https://example.com",
-  "tinyUrl": "https://tinyurl.com/abc123",
-  "creator": "VTX Group"
+  "timestamp": "2025-04-06T14:30:45Z",
+  "count": 2,
+  "lives": [
+    {
+      "name": "Gita Sekar Andarini",
+      "roomId": "318064",
+      "roomUrlKey": "gita_jkt48",
+      "isLive": true,
+      "viewers": 1243,
+      "startedAt": "2025-04-06T13:45:22Z",
+      "thumbnailUrl": "https://image.showroom-cdn.com/showroom-prod/image/room/318064_thumbnail.jpg",
+      "isOfficial": true
+    },
+    {
+      "name": "JKT48 Official",
+      "roomId": "317778",
+      "roomUrlKey": "jkt48_official",
+      "isLive": true,
+      "viewers": 3682,
+      "startedAt": "2025-04-06T14:00:00Z",
+      "thumbnailUrl": "https://image.showroom-cdn.com/showroom-prod/image/room/317778_thumbnail.jpg",
+      "isOfficial": true
+    }
+  ]
 }`}
                       </code>
                     </pre>
@@ -257,7 +304,7 @@ export default function TinyURLDocPage() {
                     <div>
                       <p className="text-sm mb-1">
                         <Badge variant="outline" className="text-destructive border-destructive">
-                          Status Code: 400 Bad Request
+                          Status Code: 401 Unauthorized
                         </Badge>
                       </p>
                       <div className="relative">
@@ -268,7 +315,7 @@ export default function TinyURLDocPage() {
                           onClick={() =>
                             copyToClipboard(`{
   "success": false,
-  "error": "URL parameter is required. Please provide a valid URL."
+  "error": "Invalid or missing API key. Please provide a valid API key."
 }`)
                           }
                         >
@@ -278,7 +325,7 @@ export default function TinyURLDocPage() {
                           <code className="text-sm">
                             {`{
   "success": false,
-  "error": "URL parameter is required. Please provide a valid URL."
+  "error": "Invalid or missing API key. Please provide a valid API key."
 }`}
                           </code>
                         </pre>
@@ -299,7 +346,7 @@ export default function TinyURLDocPage() {
                           onClick={() =>
                             copyToClipboard(`{
   "success": false,
-  "error": "An internal server error occurred. Please try again later."
+  "error": "An error occurred while fetching data from Showroom API. Please try again later."
 }`)
                           }
                         >
@@ -309,7 +356,7 @@ export default function TinyURLDocPage() {
                           <code className="text-sm">
                             {`{
   "success": false,
-  "error": "An internal server error occurred. Please try again later."
+  "error": "An error occurred while fetching data from Showroom API. Please try again later."
 }`}
                           </code>
                         </pre>
@@ -327,7 +374,7 @@ export default function TinyURLDocPage() {
               <h2 className="text-2xl font-bold">Usage Examples</h2>
 
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold">Shortening a URL</h3>
+                <h3 className="text-xl font-semibold">Getting Live Showroom Data</h3>
                 <div className="relative">
                   <Button
                     variant="ghost"
@@ -335,14 +382,43 @@ export default function TinyURLDocPage() {
                     className="absolute top-2 right-2 h-8 w-8"
                     onClick={() =>
                       copyToClipboard(`// Example Request
-GET https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://openai.com
+GET https://api.jkt48connect.my.id/api/live/showroom?api_key=your_api_key_here
 
-// Example Response
+// Example Response (when members are live)
 {
   "success": true,
-  "originalUrl": "https://openai.com",
-  "tinyUrl": "https://tinyurl.com/xyz789",
-  "creator": "VTX Group"
+  "timestamp": "2025-04-06T14:30:45Z",
+  "count": 2,
+  "lives": [
+    {
+      "name": "Gita Sekar Andarini",
+      "roomId": "318064",
+      "roomUrlKey": "gita_jkt48",
+      "isLive": true,
+      "viewers": 1243,
+      "startedAt": "2025-04-06T13:45:22Z",
+      "thumbnailUrl": "https://image.showroom-cdn.com/showroom-prod/image/room/318064_thumbnail.jpg",
+      "isOfficial": true
+    },
+    {
+      "name": "JKT48 Official",
+      "roomId": "317778",
+      "roomUrlKey": "jkt48_official",
+      "isLive": true,
+      "viewers": 3682,
+      "startedAt": "2025-04-06T14:00:00Z",
+      "thumbnailUrl": "https://image.showroom-cdn.com/showroom-prod/image/room/317778_thumbnail.jpg",
+      "isOfficial": true
+    }
+  ]
+}
+
+// Example Response (when no members are live)
+{
+  "success": true,
+  "timestamp": "2025-04-06T03:15:22Z",
+  "count": 0,
+  "lives": []
 }`)
                     }
                   >
@@ -351,14 +427,43 @@ GET https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://openai.com
                   <pre className="bg-muted p-4 rounded-md overflow-x-auto">
                     <code className="text-sm">
                       {`// Example Request
-GET https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://openai.com
+GET https://api.jkt48connect.my.id/api/live/showroom?api_key=your_api_key_here
 
-// Example Response
+// Example Response (when members are live)
 {
   "success": true,
-  "originalUrl": "https://openai.com",
-  "tinyUrl": "https://tinyurl.com/xyz789",
-  "creator": "VTX Group"
+  "timestamp": "2025-04-06T14:30:45Z",
+  "count": 2,
+  "lives": [
+    {
+      "name": "Gita Sekar Andarini",
+      "roomId": "318064",
+      "roomUrlKey": "gita_jkt48",
+      "isLive": true,
+      "viewers": 1243,
+      "startedAt": "2025-04-06T13:45:22Z",
+      "thumbnailUrl": "https://image.showroom-cdn.com/showroom-prod/image/room/318064_thumbnail.jpg",
+      "isOfficial": true
+    },
+    {
+      "name": "JKT48 Official",
+      "roomId": "317778",
+      "roomUrlKey": "jkt48_official",
+      "isLive": true,
+      "viewers": 3682,
+      "startedAt": "2025-04-06T14:00:00Z",
+      "thumbnailUrl": "https://image.showroom-cdn.com/showroom-prod/image/room/317778_thumbnail.jpg",
+      "isOfficial": true
+    }
+  ]
+}
+
+// Example Response (when no members are live)
+{
+  "success": true,
+  "timestamp": "2025-04-06T03:15:22Z",
+  "count": 0,
+  "lives": []
 }`}
                     </code>
                   </pre>
@@ -373,11 +478,21 @@ GET https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://openai.com
                     size="icon"
                     className="absolute top-2 right-2 h-8 w-8"
                     onClick={() =>
-                      copyToClipboard(`fetch('https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://example.com')
+                      copyToClipboard(`const API_KEY = 'your_api_key_here';
+
+fetch('https://api.jkt48connect.my.id/api/live/showroom?api_key=' + API_KEY)
   .then(response => response.json())
   .then(data => {
     if (data.success) {
-      console.log('Shortened URL:', data.tinyUrl);
+      if (data.count > 0) {
+        console.log('There are currently ' + data.count + ' JKT48 streams live:');
+        data.lives.forEach(live => {
+          console.log('- ' + live.name + ' with ' + live.viewers + ' viewers');
+          console.log('  Room link: https://www.showroom-live.com/r/' + live.roomUrlKey);
+        });
+      } else {
+        console.log('No JKT48 members are currently streaming.');
+      }
     } else {
       console.error('Error:', data.error);
     }
@@ -389,11 +504,21 @@ GET https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://openai.com
                   </Button>
                   <pre className="bg-muted p-4 rounded-md overflow-x-auto">
                     <code className="text-sm">
-                      {`fetch('https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://example.com')
+                      {`const API_KEY = 'your_api_key_here';
+
+fetch('https://api.jkt48connect.my.id/api/live/showroom?api_key=' + API_KEY)
   .then(response => response.json())
   .then(data => {
     if (data.success) {
-      console.log('Shortened URL:', data.tinyUrl);
+      if (data.count > 0) {
+        console.log('There are currently ' + data.count + ' JKT48 streams live:');
+        data.lives.forEach(live => {
+          console.log('- ' + live.name + ' with ' + live.viewers + ' viewers');
+          console.log('  Room link: https://www.showroom-live.com/r/' + live.roomUrlKey);
+        });
+      } else {
+        console.log('No JKT48 members are currently streaming.');
+      }
     } else {
       console.error('Error:', data.error);
     }
@@ -413,36 +538,33 @@ GET https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://openai.com
 
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <h3 className="text-xl font-semibold">1. Input URL</h3>
+                  <h3 className="text-xl font-semibold">1. API Key Authentication</h3>
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary flex-shrink-0" />
-                      <span>The API accepts a URL provided as a query parameter.</span>
+                      <span>Each request must include a valid API key for authentication.</span>
                     </li>
                     <li className="flex items-start">
                       <ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary flex-shrink-0" />
-                      <span>If no URL is provided, an error message will be returned.</span>
+                      <span>Contact the administrator for obtaining an API key.</span>
                     </li>
                   </ul>
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-xl font-semibold">2. Calling TinyURL API</h3>
+                  <h3 className="text-xl font-semibold">2. Showroom Data Retrieval</h3>
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary flex-shrink-0" />
-                      <span>The API makes a request to the TinyURL service using:</span>
+                      <span>The API checks for currently active JKT48 live streams on Showroom.</span>
                     </li>
-                  </ul>
-                  <div className="relative ml-7">
-                    <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                      <code className="text-sm">https://tinyurl.com/api-create.php?url=&lt;targetUrl&gt;</code>
-                    </pre>
-                  </div>
-                  <ul className="space-y-2">
                     <li className="flex items-start">
                       <ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary flex-shrink-0" />
-                      <span>The URL is encoded for safe transmission.</span>
+                      <span>Only JKT48 members and official accounts are included in the results.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary flex-shrink-0" />
+                      <span>Information is retrieved from the Showroom API and processed in real-time.</span>
                     </li>
                   </ul>
                 </div>
@@ -459,16 +581,30 @@ GET https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://openai.com
                       <span className="ml-2">Boolean value indicating the request status.</span>
                     </li>
                     <li className="flex items-start ml-7">
-                      <span className="font-mono text-sm">originalUrl</span>
-                      <span className="ml-2">The original URL provided.</span>
+                      <span className="font-mono text-sm">timestamp</span>
+                      <span className="ml-2">The time when the data was retrieved.</span>
                     </li>
                     <li className="flex items-start ml-7">
-                      <span className="font-mono text-sm">tinyUrl</span>
-                      <span className="ml-2">The shortened URL from TinyURL.</span>
+                      <span className="font-mono text-sm">count</span>
+                      <span className="ml-2">The number of active live streams found.</span>
                     </li>
                     <li className="flex items-start ml-7">
-                      <span className="font-mono text-sm">creator</span>
-                      <span className="ml-2">The watermark VTX Group.</span>
+                      <span className="font-mono text-sm">lives</span>
+                      <span className="ml-2">An array of objects containing details about each live stream.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="text-xl font-semibold">4. Data Refresh Rate</h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary flex-shrink-0" />
+                      <span>The API refreshes data approximately every 30 seconds.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary flex-shrink-0" />
+                      <span>Each request provides the most recent available data.</span>
                     </li>
                   </ul>
                 </div>
@@ -480,14 +616,14 @@ GET https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://openai.com
           <section id="contact" className={activeSection === "contact" ? "block" : "hidden"}>
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">Contact</h2>
-              <p>For inquiries or support, please reach out via:</p>
+              <p>For inquiries, support, or to request an API key, please reach out via:</p>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary flex-shrink-0" />
                   <span>
                     <strong>Email:</strong>{" "}
-                    <a href="mailto:fort@vtxgroup.my.id" className="text-primary hover:underline">
-                      fort@vtxgroup.my.id
+                    <a href="mailto:contact@jkt48connect.my.id" className="text-primary hover:underline">
+                      contact@jkt48connect.my.id
                     </a>
                   </span>
                 </li>
@@ -496,28 +632,31 @@ GET https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://openai.com
                   <span>
                     <strong>Website:</strong>{" "}
                     <a
-                      href="https://vtxgroup.my.id"
+                      href="https://jkt48connect.web.id"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary hover:underline"
                     >
-                      https://vtxgroup.my.id
+                      https://jkt48connect.my.id
                     </a>
                   </span>
                 </li>
               </ul>
 
               <div className="mt-8 space-y-2">
-                <h3 className="text-xl font-semibold">Author</h3>
+                <h3 className="text-xl font-semibold">API Information</h3>
                 <ul className="space-y-1">
                   <li>
-                    <strong>Author:</strong> VTX Group
+                    <strong>Provider:</strong> JKT48 Connect
                   </li>
                   <li>
-                    <strong>Version:</strong> 1.0
+                    <strong>Version:</strong> 3.0.14(on npmjs) 
                   </li>
                   <li>
-                    <strong>License:</strong> MIT
+                    <strong>License:</strong> API for non-commercial use only
+                  </li>
+                  <li>
+                    <strong>Rate Limit:</strong> 60 requests per minute
                   </li>
                 </ul>
               </div>
@@ -535,11 +674,10 @@ GET https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://openai.com
               contact: "Contact",
             }}
             setActiveSection={setActiveSection}
-            apiUrl="https://api.vtxgroup.my.id/api/v1/tinyurl?url=https://example.com"
+            apiUrl="https://api.jkt48connect.my.id/api/live/showroom?api_key=YOUR_API_KEY"
           />
         </motion.div>
       </div>
     </div>
   )
-}
-
+                                      }
