@@ -12,11 +12,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { ApiBaseUrl } from "@/components/api-base-url"
 import { DocNavigation } from "@/components/doc-navigation"
 
-export default function WeatherDocPage() {
+export default function LiveStreamingDocPage() {
   const [activeSection, setActiveSection] = useState("overview")
   const [copied, setCopied] = useState(false)
 
-  const copyToClipboard = (text: string) => {
+  const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
@@ -83,15 +83,13 @@ export default function WeatherDocPage() {
         >
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <h1 className="text-3xl font-bold tracking-tight">Weather API Documentation</h1>
-              <Badge variant="outline" className="ml-2">
-                v1
-              </Badge>
+              <h1 className="text-3xl font-bold tracking-tight">Live Streaming API Documentation</h1>
+              <Badge variant="outline" className="ml-2">v1</Badge>
             </div>
-            <p className="text-muted-foreground">Get accurate weather data for any city around the world.</p>
+            <p className="text-muted-foreground">Fetch complete live streaming data for JKT48 members across YouTube, IDN Platforms, and Showroom.</p>
           </div>
 
-          <ApiBaseUrl url="https://api.vtxgroup.my.id/api/v1/weather" />
+          <ApiBaseUrl url="https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY" />
 
           <Separator />
 
@@ -99,26 +97,15 @@ export default function WeatherDocPage() {
           <section id="overview" className={activeSection === "overview" ? "block" : "hidden"}>
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">Overview</h2>
-              <p>
-                The Weather API provides current weather data for cities worldwide. It's designed to be simple to use
-                and integrate into your applications.
-              </p>
+              <p>The Live Streaming API provides real-time streaming details for JKT48 members, including YouTube (JKT48V), IDN Platforms, and Showroom.</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                 <div className="border rounded-lg p-4 bg-card">
                   <h3 className="font-medium mb-2">Features</h3>
                   <ul className="space-y-2 text-sm">
-                    <li className="flex items-center">
-                      <ArrowRight className="h-4 w-4 mr-2 text-primary" />
-                      Current weather conditions
-                    </li>
-                    <li className="flex items-center">
-                      <ArrowRight className="h-4 w-4 mr-2 text-primary" />
-                      Temperature in Celsius
-                    </li>
-                    <li className="flex items-center">
-                      <ArrowRight className="h-4 w-4 mr-2 text-primary" />
-                      Weather descriptions
-                    </li>
+                    <li className="flex items-center"><ArrowRight className="h-4 w-4 mr-2 text-primary" />Complete live streaming metadata</li>
+                    <li className="flex items-center"><ArrowRight className="h-4 w-4 mr-2 text-primary" />Streaming URLs with quality labels</li>
+                    <li className="flex items-center"><ArrowRight className="h-4 w-4 mr-2 text-primary" />Chat room and room IDs</li>
+                    <li className="flex items-center"><ArrowRight className="h-4 w-4 mr-2 text-primary" />Platform types: youtube, idn, showroom</li>
                   </ul>
                 </div>
                 <div className="border rounded-lg p-4 bg-card">
@@ -126,7 +113,7 @@ export default function WeatherDocPage() {
                   <p className="text-sm mb-2">Make a GET request to:</p>
                   <div className="relative">
                     <code className="text-xs block bg-muted p-2 rounded overflow-x-auto whitespace-pre-wrap break-all">
-                      https://api.vtxgroup.my.id/api/v1/weather?city=London
+                      https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY
                     </code>
                   </div>
                 </div>
@@ -139,8 +126,8 @@ export default function WeatherDocPage() {
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">1. Request Method</h2>
               <div className="space-y-2">
-                <h3 className="text-xl font-semibold">GET /api/v1/weather</h3>
-                <p>Retrieves weather data for a specified city.</p>
+                <h3 className="text-xl font-semibold">GET /api/live</h3>
+                <p>Retrieves live streaming data for JKT48 members.</p>
               </div>
 
               <div className="space-y-2">
@@ -157,10 +144,10 @@ export default function WeatherDocPage() {
                     </TableHeader>
                     <TableBody>
                       <TableRow>
-                        <TableCell className="font-mono">city</TableCell>
+                        <TableCell className="font-mono">api_key</TableCell>
                         <TableCell>string</TableCell>
                         <TableCell>Yes</TableCell>
-                        <TableCell>The name of the city to fetch weather data for</TableCell>
+                        <TableCell>Your API key for authentication</TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
@@ -180,16 +167,12 @@ export default function WeatherDocPage() {
                       variant="ghost"
                       size="icon"
                       className="absolute top-2 right-2 h-8 w-8"
-                      onClick={() =>
-                        copyToClipboard('curl -X GET "https://api.vtxgroup.my.id/api/v1/weather?city=London"')
-                      }
+                      onClick={() => copyToClipboard('curl -X GET "https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY"')}
                     >
                       <Copy className="h-4 w-4" />
                     </Button>
                     <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                      <code className="text-sm">
-                        {`curl -X GET "https://api.vtxgroup.my.id/api/v1/weather?city=London"`}
-                      </code>
+                      <code className="text-sm">{`curl -X GET "https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY"`}</code>
                     </pre>
                   </TabsContent>
                   <TabsContent value="js" className="relative">
@@ -197,22 +180,18 @@ export default function WeatherDocPage() {
                       variant="ghost"
                       size="icon"
                       className="absolute top-2 right-2 h-8 w-8"
-                      onClick={() =>
-                        copyToClipboard(`fetch("https://api.vtxgroup.my.id/api/v1/weather?city=London")
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error("Error:", error));`)
-                      }
+                      onClick={() => copyToClipboard(`fetch("https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY")
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));`)}
                     >
                       <Copy className="h-4 w-4" />
                     </Button>
                     <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                      <code className="text-sm">
-                        {`fetch("https://api.vtxgroup.my.id/api/v1/weather?city=London")
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error("Error:", error));`}
-                      </code>
+                      <code className="text-sm">{`fetch("https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY")
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));`}</code>
                     </pre>
                   </TabsContent>
                   <TabsContent value="python" className="relative">
@@ -220,24 +199,18 @@ export default function WeatherDocPage() {
                       variant="ghost"
                       size="icon"
                       className="absolute top-2 right-2 h-8 w-8"
-                      onClick={() =>
-                        copyToClipboard(`import requests
+                      onClick={() => copyToClipboard(`import requests
 
-response = requests.get("https://api.vtxgroup.my.id/api/v1/weather?city=London")
-data = response.json()
-print(data)`)
-                      }
+response = requests.get("https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY")
+print(response.json())`)}
                     >
                       <Copy className="h-4 w-4" />
                     </Button>
                     <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                      <code className="text-sm">
-                        {`import requests
+                      <code className="text-sm">{`import requests
 
-response = requests.get("https://api.vtxgroup.my.id/api/v1/weather?city=London")
-data = response.json()
-print(data)`}
-                      </code>
+response = requests.get("https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY")
+print(response.json())`}</code>
                     </pre>
                   </TabsContent>
                 </Tabs>
@@ -252,44 +225,60 @@ print(data)`}
 
               <div className="space-y-2">
                 <h3 className="text-xl font-semibold">Success Response</h3>
-                <p className="text-sm mb-1">
-                  <Badge variant="outline">Status Code: 200 OK</Badge>
-                </p>
+                <p className="text-sm mb-1"><Badge variant="outline">Status Code: 200 OK</Badge></p>
                 <div className="relative">
                   <Button
                     variant="ghost"
                     size="icon"
                     className="absolute top-2 right-2 h-8 w-8"
-                    onClick={() =>
-                      copyToClipboard(`{
-  "name": "London",
-  "main": {
-      "temp": 15.5
-  },
-  "weather": [
+                    onClick={() => copyToClipboard(`[
+  {
+    "name": "Fritzy",
+    "img": "https://cdn.idntimes.com/content-images/post/20250406/717109e0-a064-4f15-8187-5c4d46e56a58-250406190348.jpg",
+    "img_alt": "https://cdn.idn.media/idnaccount/avatar/500/f4d25811b1b50effd560fb480cac8ba0.webp?v=1712299807",
+    "url_key": "jkt48_fritzy",
+    "slug": "yuk-diborong-250406190348",
+    "room_id": 510011,
+    "is_graduate": false,
+    "is_group": false,
+    "chat_room_id": "arn:aws:ivschat:us-east-1:050891932989:room/dsKjuKRqfoRE",
+    "started_at": "2025-04-06T12:03:58.000Z",
+    "streaming_url_list": [
       {
-          "description": "clear sky"
+        "label": "original",
+        "quality": 1,
+        "url": "https://4b964ca68cf1.us-east-1.playback.live-video.net/api/video/v1/us-east-1.050891932989.channel.K9fM2uTS2hX3.m3u8"
       }
-  ]
-}`)
-                    }
+    ],
+    "type": "idn"
+  }
+]`)}
                   >
                     <Copy className="h-4 w-4" />
                   </Button>
                   <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                    <code className="text-sm">
-                      {`{
-  "name": "London",
-  "main": {
-      "temp": 15.5
-  },
-  "weather": [
+                    <code className="text-sm">{`[
+  {
+    "name": "Fritzy",
+    "img": "https://cdn.idntimes.com/content-images/post/20250406/717109e0-a064-4f15-8187-5c4d46e56a58-250406190348.jpg",
+    "img_alt": "https://cdn.idn.media/idnaccount/avatar/500/f4d25811b1b50effd560fb480cac8ba0.webp?v=1712299807",
+    "url_key": "jkt48_fritzy",
+    "slug": "yuk-diborong-250406190348",
+    "room_id": 510011,
+    "is_graduate": false,
+    "is_group": false,
+    "chat_room_id": "arn:aws:ivschat:us-east-1:050891932989:room/dsKjuKRqfoRE",
+    "started_at": "2025-04-06T12:03:58.000Z",
+    "streaming_url_list": [
       {
-          "description": "clear sky"
+        "label": "original",
+        "quality": 1,
+        "url": "https://4b964ca68cf1.us-east-1.playback.live-video.net/api/video/v1/us-east-1.050891932989.channel.K9fM2uTS2hX3.m3u8"
       }
-  ]
-}`}
-                    </code>
+    ],
+    "type": "idn"
+  }
+]`}</code>
                   </pre>
                 </div>
               </div>
@@ -300,62 +289,39 @@ print(data)`}
                 <div className="space-y-4">
                   <div>
                     <p className="text-sm mb-1">
-                      <Badge variant="outline" className="text-destructive border-destructive">
-                        Status Code: 400 Bad Request
-                      </Badge>
-                      <span className="ml-2 text-sm">
-                        Missing <code className="text-xs bg-muted px-1 py-0.5 rounded">city</code> parameter
-                      </span>
+                      <Badge variant="outline" className="text-destructive border-destructive">Status Code: 400 Bad Request</Badge>
+                      <span className="ml-2 text-sm">Missing <code className="text-xs bg-muted px-1 py-0.5 rounded">api_key</code> parameter</span>
                     </p>
                     <div className="relative">
                       <Button
                         variant="ghost"
                         size="icon"
                         className="absolute top-2 right-2 h-8 w-8"
-                        onClick={() =>
-                          copyToClipboard(`{
-  "error": "City parameter is required"
-}`)
-                        }
+                        onClick={() => copyToClipboard(`{ "error": "API key is required" }`)}
                       >
                         <Copy className="h-4 w-4" />
                       </Button>
                       <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                        <code className="text-sm">
-                          {`{
-  "error": "City parameter is required"
-}`}
-                        </code>
+                        <code className="text-sm">{`{ "error": "API key is required" }`}</code>
                       </pre>
                     </div>
                   </div>
-
                   <div>
                     <p className="text-sm mb-1">
-                      <Badge variant="outline" className="text-destructive border-destructive">
-                        Status Code: 500 Internal Server Error
-                      </Badge>
-                      <span className="ml-2 text-sm">Invalid City or API Failure</span>
+                      <Badge variant="outline" className="text-destructive border-destructive">Status Code: 401 Unauthorized</Badge>
+                      <span className="ml-2 text-sm">Invalid <code className="text-xs bg-muted px-1 py-0.5 rounded">api_key</code></span>
                     </p>
                     <div className="relative">
                       <Button
                         variant="ghost"
                         size="icon"
                         className="absolute top-2 right-2 h-8 w-8"
-                        onClick={() =>
-                          copyToClipboard(`{
-  "error": "Failed to fetch weather data"
-}`)
-                        }
+                        onClick={() => copyToClipboard(`{ "error": "Invalid API key" }`)}
                       >
                         <Copy className="h-4 w-4" />
                       </Button>
                       <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                        <code className="text-sm">
-                          {`{
-  "error": "Failed to fetch weather data"
-}`}
-                        </code>
+                        <code className="text-sm">{`{ "error": "Invalid API key" }`}</code>
                       </pre>
                     </div>
                   </div>
@@ -369,29 +335,10 @@ print(data)`}
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">3. Usage Guidelines</h2>
               <ul className="space-y-3">
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary flex-shrink-0" />
-                  <span>
-                    Ensure that you pass a valid <code className="text-xs bg-muted px-1 py-0.5 rounded">city</code> name
-                    as a query parameter.
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary flex-shrink-0" />
-                  <span>
-                    API responses are in <strong>JSON format</strong>.
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary flex-shrink-0" />
-                  <span>
-                    Temperature is returned in <strong>Celsius</strong> by default.
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary flex-shrink-0" />
-                  <span>Rate limits may apply for excessive requests.</span>
-                </li>
+                <li className="flex items-start"><ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary" /><span>Include a valid <code className="text-xs bg-muted px-1 py-0.5 rounded">api_key</code> with each request</span></li>
+                <li className="flex items-start"><ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary" /><span>Responses are returned in <strong>JSON format</strong></span></li>
+                <li className="flex items-start"><ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary" /><span>Respect rate limits to avoid being throttled</span></li>
+                <li className="flex items-start"><ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary" /><span>Check <code className="text-xs bg-muted px-1 py-0.5 rounded">type</code> field for platform source</span></li>
               </ul>
             </div>
           </section>
@@ -399,18 +346,12 @@ print(data)`}
           <DocNavigation
             activeSection={activeSection}
             sections={["overview", "request", "response", "guidelines"]}
-            sectionTitles={{
-              overview: "Overview",
-              request: "Request Method",
-              response: "Response Format",
-              guidelines: "Usage Guidelines",
-            }}
+            sectionTitles={{ overview: "Overview", request: "Request Method", response: "Response Format", guidelines: "Usage Guidelines" }}
             setActiveSection={setActiveSection}
-            apiUrl="https://api.vtxgroup.my.id/api/v1/weather?city=London"
+            apiUrl="https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY"
           />
         </motion.div>
       </div>
     </div>
   )
 }
-
