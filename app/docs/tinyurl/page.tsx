@@ -92,7 +92,7 @@ export default function JKT48ConnectRecentLiveDocsPage() {
             <div className="flex items-center gap-2">
               <h1 className="text-3xl font-bold tracking-tight">JKT48Connect Recent Live API</h1>
               <Badge variant="outline" className="ml-2">
-                v1
+                v3.0.14
               </Badge>
             </div>
             <p className="text-muted-foreground">
