@@ -49,7 +49,7 @@ export default function IDNLiveDocPage() {
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <h1 className="text-3xl font-bold tracking-tight">JKT48Connect: IDN Live API Documentation</h1>
-              <Badge variant="outline" className="ml-2">v1</Badge>
+              <Badge variant="outline" className="ml-2">v3.0.14</Badge>
             </div>
             <p className="text-muted-foreground">Menampilkan data live dari platform IDN milik JKT48.</p>
           </div>
