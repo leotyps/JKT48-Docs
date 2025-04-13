@@ -277,7 +277,7 @@ export default function HomePage() {
                   Download TikTok videos and audio by providing a valid TikTok video URL.
                 </p>
                 <div className="mt-auto pt-4">
-                  <Link href="/docs/tiktok">
+                  <Link href="/comingsoon">
                     <Button
                       variant="outline"
                       className="w-full group rounded-lg border-primary/20 hover:border-primary hover:bg-primary/5"
@@ -303,7 +303,7 @@ export default function HomePage() {
                   Download YouTube videos and extract audio by providing a valid YouTube video URL.
                 </p>
                 <div className="mt-auto pt-4">
-                  <Link href="/docs/yt">
+                  <Link href="/comingsoon">
                     <Button
                       variant="outline"
                       className="w-full group rounded-lg border-primary/20 hover:border-primary hover:bg-primary/5"
