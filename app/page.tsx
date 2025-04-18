@@ -631,25 +631,6 @@ function ApiKeyGenerationForm() {
             "Generate API Key"
           )}
         </Button>
-      )
-        return (
-    <div className="w-full max-w-md mt-6">
-      {!isGenerated ? (
-        <Button 
-          onClick={generateApiKey} 
-          size="lg" 
-          className="w-full rounded-lg"
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <>
-              <span className="mr-2">Generating</span>
-              <div className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin"></div>
-            </>
-          ) : (
-            "Generate API Key"
-          )}
-        </Button>
       ) : (
         <div className="space-y-4">
           <div className="p-4 bg-muted rounded-lg flex items-center justify-between">
