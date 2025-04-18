@@ -20,7 +20,8 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useInView } from "react-intersection-observer"
-import { toast } from "@/lib/utils"; // Replace with your preferred toast library
+import { toast } from "@/lib/utils" // Replace with your preferred toast library
+
 export default function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -28,49 +29,6 @@ export default function HomePage() {
     setIsLoaded(true)
   }, [])
 
-  const ApiKeyGenerationSection = () => {
-  const [apiKey, setApiKey] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isGenerated, setIsGenerated] = useState(false);
-  const [error, setError] = useState("");
-
-  const generateApiKey = async () => {
-    try {
-      setIsLoading(true);
-      setError("");
-      
-      // Generate a random 6-digit number
-      const randomDigits = Math.floor(100000 + Math.random() * 900000).toString().substring(0, 6);
-      
-      // Randomly choose between DL and VZ as prefix
-      const prefix = Math.random() > 0.5 ? "DL" : "VZ";
-      
-      const newApiKey = `${prefix}${randomDigits}`;
-      
-      // Get GitHub token from environment variable
-      // Note: In Next.js, env variables intended for client-side use should be prefixed with NEXT_PUBLIC_
-      const githubToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
-      
-      if (!githubToken) {
-        throw new Error('GitHub token not configured');
-      }
-      
-      // Call the API to activate the key
-      const response = await fetch(`https://dash.jkt48connect.my.id/api/auth/edit-github-apikey?githubToken=${githubToken}&apiKey=${newApiKey}`);
-      
-      if (!response.ok) {
-        throw new Error('Failed to activate API key');
-      }
-      
-      setApiKey(newApiKey);
-      setIsGenerated(true);
-    } catch (err) {
-      setError(err.message || 'An error occurred while generating your API key');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-    
   const controls = useAnimation()
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -194,92 +152,92 @@ export default function HomePage() {
         </section>
 
         {/* Service Categories Section - Updated with new categories */}
-<section className="w-full py-12 md:py-24 bg-gradient-to-b from-background to-muted/30">
-  <div className="container px-4 md:px-6">
-    <div className="text-center mb-12">
-      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-        API Service Categories
-      </h2>
-      <p className="mt-4 text-muted-foreground md:text-lg max-w-3xl mx-auto">
-        Explore our comprehensive collection of API services designed for different needs
-      </p>
-    </div>
+        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-background to-muted/30">
+          <div className="container px-4 md:px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+                API Service Categories
+              </h2>
+              <p className="mt-4 text-muted-foreground md:text-lg max-w-3xl mx-auto">
+                Explore our comprehensive collection of API services designed for different needs
+              </p>
+            </div>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {/* JKT48 Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-pink-500 to-rose-500 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
-      >
-        <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
-        <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/20 p-2">
-          <Music className="h-6 w-6 text-white" />
-        </div>
-        <h3 className="mb-2 text-2xl font-bold text-white">JKT48</h3>
-        <p className="text-sm text-white/90">
-          Access exclusive JKT48 content and data
-        </p>
-      </motion.div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* JKT48 Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-pink-500 to-rose-500 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
+                <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/20 p-2">
+                  <Music className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="mb-2 text-2xl font-bold text-white">JKT48</h3>
+                <p className="text-sm text-white/90">
+                  Access exclusive JKT48 content and data
+                </p>
+              </motion.div>
 
-      {/* Downloader Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        viewport={{ once: true }}
-        className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
-      >
-        <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
-        <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/20 p-2">
-          <Download className="h-6 w-6 text-white" />
-        </div>
-        <h3 className="mb-2 text-2xl font-bold text-white">Downloader</h3>
-        <p className="text-sm text-white/90">
-          Download content from various platforms
-        </p>
-      </motion.div>
+              {/* Downloader Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
+                <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/20 p-2">
+                  <Download className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="mb-2 text-2xl font-bold text-white">Downloader</h3>
+                <p className="text-sm text-white/90">
+                  Download content from various platforms
+                </p>
+              </motion.div>
 
-      {/* Payment Gateway Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        viewport={{ once: true }}
-        className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
-      >
-        <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
-        <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/20 p-2">
-          <FileSpreadsheet className="h-6 w-6 text-white" />
-        </div>
-        <h3 className="mb-2 text-2xl font-bold text-white">Payment Gateway</h3>
-        <p className="text-sm text-white/90">
-          Secure and reliable payment processing
-        </p>
-      </motion.div>
+              {/* Payment Gateway Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
+                <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/20 p-2">
+                  <FileSpreadsheet className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="mb-2 text-2xl font-bold text-white">Payment Gateway</h3>
+                <p className="text-sm text-white/90">
+                  Secure and reliable payment processing
+                </p>
+              </motion.div>
 
-      {/* AI Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        viewport={{ once: true }}
-        className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
-      >
-        <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
-        <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/20 p-2">
-          <Code className="h-6 w-6 text-white" />
-        </div>
-        <h3 className="mb-2 text-2xl font-bold text-white">Artificial Intelligence</h3>
-        <p className="text-sm text-white/90">
-          Advanced AI-powered tools and services
-        </p>
-      </motion.div>
-    </div>
-  </div>
-</section>
+              {/* AI Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
+                <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/20 p-2">
+                  <Code className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="mb-2 text-2xl font-bold text-white">Artificial Intelligence</h3>
+                <p className="text-sm text-white/90">
+                  Advanced AI-powered tools and services
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
         
         {/* JKT48 Specific APIs Section */}
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/50">
@@ -574,52 +532,108 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Call to Action Section */}
-          <section className="w-full py-12 md:py-20 bg-background">
-      <div className="container px-4 md:px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-muted">
-            <div className="p-8 md:p-10">
-              <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                <div className="inline-flex p-3 bg-primary/10 rounded-full mb-2">
-                  <Code className="h-8 w-8 text-primary" />
+        {/* Call to Action Section - Updated with Card Design and API Key Generation */}
+        <section className="w-full py-12 md:py-20 bg-background">
+          <div className="container px-4 md:px-6">
+            <div className="max-w-3xl mx-auto">
+              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-muted">
+                <div className="p-8 md:p-10">
+                  <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                    <div className="inline-flex p-3 bg-primary/10 rounded-full mb-2">
+                      <Code className="h-8 w-8 text-primary" />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Ready to Get Started?</h2>
+                      <p className="text-muted-foreground md:text-lg max-w-2xl">
+                        Generate your API key instantly and start building amazing applications with our powerful APIs.
+                      </p>
+                    </div>
+                    
+                    <ApiKeyGenerationForm />
+                  </div>
                 </div>
-                
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Ready to Get Started?</h2>
-                  <p className="text-muted-foreground md:text-lg max-w-2xl">
-                    Generate your API key instantly and start building amazing applications with our powerful APIs.
-                  </p>
-                </div>
-                
-                <div className="w-full max-w-md mt-6">
-                  {!isGenerated ? (
-                    <Button 
-                      onClick={generateApiKey} 
-                      size="lg" 
-                      className="w-full rounded-lg"
-                      disabled={isLoading}
-                    >
-                      {isLoading ? (
-                        <>
-                          <span className="mr-2">Generating</span>
-                          <div className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin"></div>
-                        </>
-                      ) : (
-                        "Generate API Key"
-                      )}
-                    </Button>
-                  ) : (
-                    <div className="space-y-4">
-                      <div className="p-4 bg-muted rounded-lg flex items-center justify-between">
-                        <code className="font-mono text-lg">{apiKey}</code>
-                        <Button 
-                          variant="ghost" 
-                          size="sm"
-                          onClick={() => {
-                            navigator.clipboard.writeText(apiKey);
-                            toast({
-                              title: "Success",
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  )
+}
+
+// API Key Generation Form Component
+function ApiKeyGenerationForm() {
+  const [apiKey, setApiKey] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isGenerated, setIsGenerated] = useState(false);
+  const [error, setError] = useState("");
+
+  const generateApiKey = async () => {
+    try {
+      setIsLoading(true);
+      setError("");
+      
+      // Generate a random 6-digit number
+      const randomDigits = Math.floor(100000 + Math.random() * 900000).toString().substring(0, 6);
+      
+      // Randomly choose between DL and VZ as prefix
+      const prefix = Math.random() > 0.5 ? "DL" : "VZ";
+      
+      const newApiKey = `${prefix}${randomDigits}`;
+      
+      // Get GitHub token from environment variable
+      const githubToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+      
+      if (!githubToken) {
+        throw new Error('GitHub token not configured');
+      }
+      
+      // Call the API to activate the key
+      const response = await fetch(`https://dash.jkt48connect.my.id/api/auth/edit-github-apikey?githubToken=${githubToken}&apiKey=${newApiKey}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to activate API key');
+      }
+      
+      setApiKey(newApiKey);
+      setIsGenerated(true);
+    } catch (err) {
+      setError(err.message || 'An error occurred while generating your API key');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="w-full max-w-md mt-6">
+      {!isGenerated ? (
+        <Button 
+          onClick={generateApiKey} 
+          size="lg" 
+          className="w-full rounded-lg"
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <>
+              <span className="mr-2">Generating</span>
+              <div className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin"></div>
+            </>
+          ) : (
+            "Generate API Key"
+          )}
+        </Button>
+      ) : (
+        <div className="space-y-4">
+          <div className="p-4 bg-muted rounded-lg flex items-center justify-between">
+            <code className="font-mono text-lg">{apiKey}</code>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => {
+                navigator.clipboard.writeText(apiKey);
+                toast({
+                  title: "Success",
                               description: "API key copied to clipboard",
                             });
                           }}
