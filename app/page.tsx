@@ -605,7 +605,34 @@ function ApiKeyGenerationForm() {
     }
   };
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(apiKey);
+    toast({
+      title: "Copied to clipboard",
+      description: "API key has been copied to your clipboard",
+    });
+  };
+
   return (
+    <div className="w-full max-w-md mt-6">
+      {!isGenerated ? (
+        <Button 
+          onClick={generateApiKey} 
+          size="lg" 
+          className="w-full rounded-lg"
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <>
+              <span className="mr-2">Generating</span>
+              <div className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin"></div>
+            </>
+          ) : (
+            "Generate API Key"
+          )}
+        </Button>
+      )
+        return (
     <div className="w-full max-w-md mt-6">
       {!isGenerated ? (
         <Button 
@@ -630,48 +657,27 @@ function ApiKeyGenerationForm() {
             <Button 
               variant="ghost" 
               size="sm"
-              onClick={() => {
-                navigator.clipboard.writeText(apiKey);
-                toast({
-                  title: "Success",
-                              description: "API key copied to clipboard",
-                            });
-                          }}
-                        >
-                          <Copy className="h-4 w-4" />
-                        </Button>
-                      </div>
-                      <div className="flex gap-4">
-                        <Button 
-                          size="lg" 
-                          className="w-full rounded-lg"
-                          onClick={() => {
-                            setIsGenerated(false);
-                            setApiKey("");
-                          }}
-                        >
-                          Generate New Key
-                        </Button>
-                        <Link href="/docs">
-                          <Button size="lg" variant="outline" className="w-full rounded-lg">
-                            View Docs
-                          </Button>
-                        </Link>
-                      </div>
-                    </div>
-                  )}
-                  
-                  {error && (
-                    <div className="mt-4 p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm">
-                      {error}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
+              onClick={copyToClipboard}
+              className="hover:bg-primary/10"
+            >
+              <Copy className="h-4 w-4" />
+            </Button>
           </div>
+          {error && (
+            <div className="p-3 text-sm bg-red-100 text-red-700 rounded-lg">
+              {error}
+            </div>
+          )}
+          <div className="text-sm text-muted-foreground">
+            Keep this key secure. You'll need it to authenticate your API requests.
+          </div>
+          <Link href="/docs/authentication">
+            <Button variant="link" className="text-primary">
+              Learn how to use your API key
+            </Button>
+          </Link>
         </div>
-      </div>
-    </section>
+      )}
+    </div>
   );
 }
