@@ -1,25 +1,196 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import Link from "next/link"
 import { motion, useAnimation } from "framer-motion"
 import { 
   ArrowRight, 
+  ArrowLeft,
+  ArrowRight as ArrowRightIcon,
   Cloud, 
-  Code, 
   Download, 
-  Image, 
-  Tv, 
-  Youtube, 
-  Music, 
-  FileSpreadsheet, 
   Mic, 
+  FileSpreadsheet, 
   Mountain,
-  Play
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useInView } from "react-intersection-observer"
 
+// Updated Service Categories Section with Slider
+export function ServiceCategoriesSlider() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const sliderRef = useRef(null);
+
+  const categories = [
+    {
+      title: "Downloader",
+      description: "Download content from various platforms",
+      icon: Download,
+      gradient: "from-purple-500 to-purple-700",
+      link: "/docs/downloaders"
+    },
+    {
+      title: "AI & Media",
+      description: "AI-powered media processing tools",
+      icon: Mic,
+      gradient: "from-blue-500 to-cyan-500",
+      link: "/docs/ai-media"
+    },
+    {
+      title: "Utilities",
+      description: "Helpful tools for everyday tasks",
+      icon: FileSpreadsheet,
+      gradient: "from-pink-500 to-rose-500",
+      link: "/docs/utilities"
+    },
+    {
+      title: "Entertainment",
+      description: "Fun and engaging content APIs",
+      icon: Mountain,
+      gradient: "from-orange-500 to-amber-500",
+      link: "/docs/entertainment"
+    }
+  ];
+
+  const nextSlide = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prevIndex) => 
+      prevIndex === categories.length - 1 ? 0 : prevIndex + 1
+    );
+    setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  const prevSlide = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? categories.length - 1 : prevIndex - 1
+    );
+    setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  // For touch events
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 75) {
+      // Swipe left
+      nextSlide();
+    } else if (touchEnd - touchStart > 75) {
+      // Swipe right
+      prevSlide();
+    }
+  };
+
+  return (
+    <section className="w-full py-12 md:py-24 bg-gradient-to-b from-background to-muted/30">
+      <div className="container px-4 md:px-6">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+            API Service Categories
+          </h2>
+          <p className="mt-4 text-muted-foreground md:text-lg max-w-3xl mx-auto">
+            Explore our comprehensive collection of API services designed for different needs
+          </p>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto">
+          {/* Navigation Arrows */}
+          <button 
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 z-10 bg-background/80 rounded-full p-2 shadow-md hover:bg-background transition-all"
+            aria-label="Previous category"
+          >
+            <ArrowLeft className="h-6 w-6" />
+          </button>
+          
+          <button 
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 z-10 bg-background/80 rounded-full p-2 shadow-md hover:bg-background transition-all"
+            aria-label="Next category"
+          >
+            <ArrowRight className="h-6 w-6" />
+          </button>
+          
+          {/* Slider Container */}
+          <div 
+            ref={sliderRef}
+            className="overflow-hidden rounded-2xl shadow-xl"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <motion.div
+              className="flex"
+              initial={{ x: 0 }}
+              animate={{ x: `-${currentIndex * 100}%` }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              style={{ width: `${categories.length * 100}%` }}
+            >
+              {categories.map((category, index) => {
+                const Icon = category.icon;
+                return (
+                  <div 
+                    key={index} 
+                    className={`w-full relative overflow-hidden rounded-2xl bg-gradient-to-br ${category.gradient} p-8 md:p-10 shadow-lg`}
+                    style={{ width: `${100 / categories.length}%` }}
+                  >
+                    <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
+                    <div className="mb-4 inline-flex items-center justify-center rounded-full bg-white/20 p-3">
+                      <Icon className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="mb-2 text-3xl font-bold text-white">{category.title}</h3>
+                    <p className="mb-6 text-xl text-white/90">
+                      {category.description}
+                    </p>
+                    <Link href={category.link}>
+                      <Button variant="secondary" className="group border border-white/20 bg-white/10 text-white hover:bg-white/20">
+                        Explore
+                        <ArrowRightIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </Link>
+                  </div>
+                );
+              })}
+            </motion.div>
+          </div>
+          
+          {/* Dots Navigation */}
+          <div className="flex justify-center mt-6 space-x-2">
+            {categories.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  if (!isAnimating) {
+                    setIsAnimating(true);
+                    setCurrentIndex(index);
+                    setTimeout(() => setIsAnimating(false), 500);
+                  }
+                }}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  currentIndex === index ? "w-6 bg-primary" : "bg-primary/30"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Update your HomePage component to use the slider
 export default function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -149,117 +320,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Service Categories Section - Similar to the image */}
-        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-background to-muted/30">
-          <div className="container px-4 md:px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-                API Service Categories
-              </h2>
-              <p className="mt-4 text-muted-foreground md:text-lg max-w-3xl mx-auto">
-                Explore our comprehensive collection of API services designed for different needs
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
-              {/* Downloader Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 p-6 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
-                <div className="mb-4 inline-flex items-center justify-center rounded-full bg-white/20 p-3">
-                  <Download className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="mb-2 text-3xl font-bold text-white">Downloader</h3>
-                <p className="mb-6 text-xl text-white/90">
-                  Download content from various platforms
-                </p>
-                <Link href="/docs/downloaders">
-                  <Button variant="secondary" className="group border border-white/20 bg-white/10 text-white hover:bg-white/20">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </motion.div>
-
-              {/* AI & Media Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 p-6 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
-                <div className="mb-4 inline-flex items-center justify-center rounded-full bg-white/20 p-3">
-                  <Mic className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="mb-2 text-3xl font-bold text-white">AI & Media</h3>
-                <p className="mb-6 text-xl text-white/90">
-                  AI-powered media processing tools
-                </p>
-                <Link href="/docs/ai-media">
-                  <Button variant="secondary" className="group border border-white/20 bg-white/10 text-white hover:bg-white/20">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </motion.div>
-
-              {/* Utilities Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-pink-500 to-rose-500 p-6 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
-                <div className="mb-4 inline-flex items-center justify-center rounded-full bg-white/20 p-3">
-                  <FileSpreadsheet className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="mb-2 text-3xl font-bold text-white">Utilities</h3>
-                <p className="mb-6 text-xl text-white/90">
-                  Helpful tools for everyday tasks
-                </p>
-                <Link href="/docs/utilities">
-                  <Button variant="secondary" className="group border border-white/20 bg-white/10 text-white hover:bg-white/20">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </motion.div>
-
-              {/* Entertainment Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 p-6 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
-                <div className="mb-4 inline-flex items-center justify-center rounded-full bg-white/20 p-3">
-                  <Mountain className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="mb-2 text-3xl font-bold text-white">Entertainment</h3>
-                <p className="mb-6 text-xl text-white/90">
-                  Fun and engaging content APIs
-                </p>
-                <Link href="/docs/entertainment">
-                  <Button variant="secondary" className="group border border-white/20 bg-white/10 text-white hover:bg-white/20">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+        {/* Service Categories Section - Now uses the slider component */}
+        <ServiceCategoriesSlider />
 
         {/* JKT48 Specific APIs Section */}
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/50">
