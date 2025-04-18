@@ -15,11 +15,12 @@ import {
   FileSpreadsheet, 
   Mic, 
   Mountain,
-  Play
+  Play,
+  Copy
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useInView } from "react-intersection-observer"
-
+import { toast } from "@/lib/utils"; // Replace with your preferred toast library
 export default function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -27,6 +28,49 @@ export default function HomePage() {
     setIsLoaded(true)
   }, [])
 
+  const ApiKeyGenerationSection = () => {
+  const [apiKey, setApiKey] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isGenerated, setIsGenerated] = useState(false);
+  const [error, setError] = useState("");
+
+  const generateApiKey = async () => {
+    try {
+      setIsLoading(true);
+      setError("");
+      
+      // Generate a random 6-digit number
+      const randomDigits = Math.floor(100000 + Math.random() * 900000).toString().substring(0, 6);
+      
+      // Randomly choose between DL and VZ as prefix
+      const prefix = Math.random() > 0.5 ? "DL" : "VZ";
+      
+      const newApiKey = `${prefix}${randomDigits}`;
+      
+      // Get GitHub token from environment variable
+      // Note: In Next.js, env variables intended for client-side use should be prefixed with NEXT_PUBLIC_
+      const githubToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+      
+      if (!githubToken) {
+        throw new Error('GitHub token not configured');
+      }
+      
+      // Call the API to activate the key
+      const response = await fetch(`https://dash.jkt48connect.my.id/api/auth/edit-github-apikey?githubToken=${githubToken}&apiKey=${newApiKey}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to activate API key');
+      }
+      
+      setApiKey(newApiKey);
+      setIsGenerated(true);
+    } catch (err) {
+      setError(err.message || 'An error occurred while generating your API key');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+    
   const controls = useAnimation()
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -531,32 +575,89 @@ export default function HomePage() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="w-full py-12 md:py-20 bg-gradient-to-r from-primary/20 to-primary/5 relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid-white/5 bg-[size:32px_32px] opacity-20"></div>
-          <div className="container px-4 md:px-6 relative z-10">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">Ready to Get Started?</h2>
-                <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                  Sign up for an API key today and start building amazing applications with our powerful APIs.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <Link href="/register">
-                  <Button size="lg" className="rounded-full px-8">
-                    Get API Key
-                  </Button>
-                </Link>
-                <Link href="/docs">
-                  <Button size="lg" variant="outline" className="rounded-full px-8">
-                    Browse Documentation
-                  </Button>
-                </Link>
+          <section className="w-full py-12 md:py-20 bg-background">
+      <div className="container px-4 md:px-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-muted">
+            <div className="p-8 md:p-10">
+              <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                <div className="inline-flex p-3 bg-primary/10 rounded-full mb-2">
+                  <Code className="h-8 w-8 text-primary" />
+                </div>
+                
+                <div className="space-y-2">
+                  <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Ready to Get Started?</h2>
+                  <p className="text-muted-foreground md:text-lg max-w-2xl">
+                    Generate your API key instantly and start building amazing applications with our powerful APIs.
+                  </p>
+                </div>
+                
+                <div className="w-full max-w-md mt-6">
+                  {!isGenerated ? (
+                    <Button 
+                      onClick={generateApiKey} 
+                      size="lg" 
+                      className="w-full rounded-lg"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <>
+                          <span className="mr-2">Generating</span>
+                          <div className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin"></div>
+                        </>
+                      ) : (
+                        "Generate API Key"
+                      )}
+                    </Button>
+                  ) : (
+                    <div className="space-y-4">
+                      <div className="p-4 bg-muted rounded-lg flex items-center justify-between">
+                        <code className="font-mono text-lg">{apiKey}</code>
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => {
+                            navigator.clipboard.writeText(apiKey);
+                            toast({
+                              title: "Success",
+                              description: "API key copied to clipboard",
+                            });
+                          }}
+                        >
+                          <Copy className="h-4 w-4" />
+                        </Button>
+                      </div>
+                      <div className="flex gap-4">
+                        <Button 
+                          size="lg" 
+                          className="w-full rounded-lg"
+                          onClick={() => {
+                            setIsGenerated(false);
+                            setApiKey("");
+                          }}
+                        >
+                          Generate New Key
+                        </Button>
+                        <Link href="/docs">
+                          <Button size="lg" variant="outline" className="w-full rounded-lg">
+                            View Docs
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {error && (
+                    <div className="mt-4 p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm">
+                      {error}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
-    </div>
-  )
-}
+    </section>
+  );
+};
