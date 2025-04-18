@@ -674,4 +674,4 @@ function ApiKeyGenerationForm() {
       </div>
     </section>
   );
-};
+}
