@@ -567,6 +567,7 @@ function ApiKeyGenerationForm() {
   const [apiKey, setApiKey] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isGenerated, setIsGenerated] = useState(false);
+  const [apiDetails, setApiDetails] = useState(null);
   const [error, setError] = useState("");
 
   const generateApiKey = async () => {
@@ -596,8 +597,17 @@ function ApiKeyGenerationForm() {
         throw new Error('Failed to activate API key');
       }
       
-      setApiKey(newApiKey);
-      setIsGenerated(true);
+      // Parse the response
+      const data = await response.json();
+      
+      // Check if the API key was updated successfully
+      if (data.message === "API key updated successfully") {
+        setApiKey(data.apiKey);
+        setApiDetails(data.details);
+        setIsGenerated(true);
+      } else {
+        throw new Error(data.message || 'Failed to generate API key');
+      }
     } catch (err) {
       setError(err.message || 'An error occurred while generating your API key');
     } finally {
@@ -644,11 +654,28 @@ function ApiKeyGenerationForm() {
               <Copy className="h-4 w-4" />
             </Button>
           </div>
+          
+          {apiDetails && (
+            <div className="text-sm bg-primary/5 p-3 rounded-lg">
+              <div className="grid grid-cols-2 gap-2">
+                <span className="text-muted-foreground">Expiry:</span>
+                <span>{apiDetails.expiryDate === "unli" ? "Unlimited" : apiDetails.expiryDate}</span>
+                
+                <span className="text-muted-foreground">Requests:</span>
+                <span>{apiDetails.remainingRequests}/{apiDetails.maxRequests}</span>
+                
+                <span className="text-muted-foreground">Last Access:</span>
+                <span>{apiDetails.lastAccessDate}</span>
+              </div>
+            </div>
+          )}
+          
           {error && (
             <div className="p-3 text-sm bg-red-100 text-red-700 rounded-lg">
               {error}
             </div>
           )}
+          
           <div className="text-sm text-muted-foreground">
             Keep this key secure. You'll need it to authenticate your API requests.
           </div>
