@@ -149,7 +149,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Service Categories Section - Updated to 2x2 grid */}
+        {/* Service Categories Section - Updated with new categories */}
 <section className="w-full py-12 md:py-24 bg-gradient-to-b from-background to-muted/30">
   <div className="container px-4 md:px-6">
     <div className="text-center mb-12">
@@ -162,11 +162,29 @@ export default function HomePage() {
     </div>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {/* Downloader Card */}
+      {/* JKT48 Card */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-pink-500 to-rose-500 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
+      >
+        <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
+        <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/20 p-2">
+          <Music className="h-6 w-6 text-white" />
+        </div>
+        <h3 className="mb-2 text-2xl font-bold text-white">JKT48</h3>
+        <p className="text-sm text-white/90">
+          Access exclusive JKT48 content and data
+        </p>
+      </motion.div>
+
+      {/* Downloader Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
         viewport={{ once: true }}
         className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
       >
@@ -180,57 +198,39 @@ export default function HomePage() {
         </p>
       </motion.div>
 
-      {/* AI & Media Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        viewport={{ once: true }}
-        className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
-      >
-        <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
-        <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/20 p-2">
-          <Mic className="h-6 w-6 text-white" />
-        </div>
-        <h3 className="mb-2 text-2xl font-bold text-white">AI & Media</h3>
-        <p className="text-sm text-white/90">
-          AI-powered media processing tools
-        </p>
-      </motion.div>
-
-      {/* Utilities Card */}
+      {/* Payment Gateway Card */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
         viewport={{ once: true }}
-        className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-pink-500 to-rose-500 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
+        className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
       >
         <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
         <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/20 p-2">
           <FileSpreadsheet className="h-6 w-6 text-white" />
         </div>
-        <h3 className="mb-2 text-2xl font-bold text-white">Utilities</h3>
+        <h3 className="mb-2 text-2xl font-bold text-white">Payment Gateway</h3>
         <p className="text-sm text-white/90">
-          Helpful tools for everyday tasks
+          Secure and reliable payment processing
         </p>
       </motion.div>
 
-      {/* Entertainment Card */}
+      {/* AI Card */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
         viewport={{ once: true }}
-        className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
+        className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 p-5 shadow-lg hover:shadow-xl transition-all duration-300"
       >
         <div className="absolute top-0 right-0 -mt-12 -mr-12 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
         <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/20 p-2">
-          <Mountain className="h-6 w-6 text-white" />
+          <Code className="h-6 w-6 text-white" />
         </div>
-        <h3 className="mb-2 text-2xl font-bold text-white">Entertainment</h3>
+        <h3 className="mb-2 text-2xl font-bold text-white">Artificial Intelligence</h3>
         <p className="text-sm text-white/90">
-          Fun and engaging content APIs
+          Advanced AI-powered tools and services
         </p>
       </motion.div>
     </div>
