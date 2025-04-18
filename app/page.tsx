@@ -564,128 +564,21 @@ export default function HomePage() {
 
 // API Key Generation Form Component
 function ApiKeyGenerationForm() {
-  const [apiKey, setApiKey] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isGenerated, setIsGenerated] = useState(false);
-  const [apiDetails, setApiDetails] = useState(null);
-  const [error, setError] = useState("");
-
-  const generateApiKey = async () => {
-    try {
-      setIsLoading(true);
-      setError("");
-      
-      // Generate a random 6-digit number
-      const randomDigits = Math.floor(100000 + Math.random() * 900000).toString().substring(0, 6);
-      
-      // Randomly choose between DL and VZ as prefix
-      const prefix = Math.random() > 0.5 ? "DL" : "VZ";
-      
-      const newApiKey = `${prefix}${randomDigits}`;
-      
-      // Get GitHub token from environment variable
-      const githubToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
-      
-      if (!githubToken) {
-        throw new Error('GitHub token not configured');
-      }
-      
-      // Call the API to activate the key
-      const response = await fetch(`https://dash.jkt48connect.my.id/api/auth/edit-github-apikey?githubToken=${githubToken}&apiKey=${newApiKey}`);
-      
-      if (!response.ok) {
-        throw new Error('Failed to activate API key');
-      }
-      
-      // Parse the response
-      const data = await response.json();
-      
-      // Check if the API key was updated successfully
-      if (data.message === "API key updated successfully") {
-        setApiKey(data.apiKey);
-        setApiDetails(data.details);
-        setIsGenerated(true);
-      } else {
-        throw new Error(data.message || 'Failed to generate API key');
-      }
-    } catch (err) {
-      setError(err.message || 'An error occurred while generating your API key');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(apiKey);
-    toast({
-      title: "Copied to clipboard",
-      description: "API key has been copied to your clipboard",
-    });
+  const redirectToWhatsApp = () => {
+    const waText = encodeURIComponent(".generate");
+    const waLink = `https://wa.me/447818592493?text=${waText}`;
+    window.location.href = waLink;
   };
 
   return (
     <div className="w-full max-w-md mt-6">
-      {!isGenerated ? (
-        <Button 
-          onClick={generateApiKey} 
-          size="lg" 
-          className="w-full rounded-lg"
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <>
-              <span className="mr-2">Generating</span>
-              <div className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin"></div>
-            </>
-          ) : (
-            "Generate API Key"
-          )}
-        </Button>
-      ) : (
-        <div className="space-y-4">
-          <div className="p-4 bg-muted rounded-lg flex items-center justify-between">
-            <code className="font-mono text-lg">{apiKey}</code>
-            <Button 
-              variant="ghost" 
-              size="sm"
-              onClick={copyToClipboard}
-              className="hover:bg-primary/10"
-            >
-              <Copy className="h-4 w-4" />
-            </Button>
-          </div>
-          
-          {apiDetails && (
-            <div className="text-sm bg-primary/5 p-3 rounded-lg">
-              <div className="grid grid-cols-2 gap-2">
-                <span className="text-muted-foreground">Expiry:</span>
-                <span>{apiDetails.expiryDate === "unli" ? "Unlimited" : apiDetails.expiryDate}</span>
-                
-                <span className="text-muted-foreground">Requests:</span>
-                <span>{apiDetails.remainingRequests}/{apiDetails.maxRequests}</span>
-                
-                <span className="text-muted-foreground">Last Access:</span>
-                <span>{apiDetails.lastAccessDate}</span>
-              </div>
-            </div>
-          )}
-          
-          {error && (
-            <div className="p-3 text-sm bg-red-100 text-red-700 rounded-lg">
-              {error}
-            </div>
-          )}
-          
-          <div className="text-sm text-muted-foreground">
-            Keep this key secure. You'll need it to authenticate your API requests.
-          </div>
-          <Link href="/docs/authentication">
-            <Button variant="link" className="text-primary">
-              Learn how to use your API key
-            </Button>
-          </Link>
-        </div>
-      )}
+      <Button 
+        onClick={redirectToWhatsApp} 
+        size="lg" 
+        className="w-full rounded-lg"
+      >
+        Generate API Key
+      </Button>
     </div>
   );
 }
