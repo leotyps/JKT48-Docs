@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { motion, useAnimation } from "framer-motion"
-import { ArrowRight, Cloud, Code, Download, Image, Tv, Youtube, Music, FileSpreadsheet, CreditCard, Brain, Mountain, Mic } from "lucide-react"
+import { ArrowRight, Cloud, Code, Download, Image, Tv, Youtube, Music, FileSpreadsheet, CreditCard, Brain } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useInView } from "react-intersection-observer"
 
@@ -177,7 +177,7 @@ export default function HomePage() {
                   </div>
                   <h3 className="text-3xl font-bold text-white mb-4">JKT48</h3>
                   <p className="text-gray-400 text-lg mb-6">
-                    Complete JKT48 data API services
+                    Complete JKT48 data API services including live streams, member profiles, and performance data.
                   </p>
                   <Link href="/docs/jkt48" className="mt-auto">
                     <Button 
@@ -203,7 +203,7 @@ export default function HomePage() {
                   </div>
                   <h3 className="text-3xl font-bold text-white mb-4">Downloader</h3>
                   <p className="text-gray-400 text-lg mb-6">
-                    Download content from various platforms
+                    Download content from various platforms including YouTube, TikTok, Instagram, and more.
                   </p>
                   <Link href="/docs/downloader" className="mt-auto">
                     <Button 
@@ -216,24 +216,24 @@ export default function HomePage() {
                 </div>
               </motion.div>
 
-              {/* AI & Media Card */}
+              {/* Payment Gateway Card */}
               <motion.div
                 variants={fadeIn}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-blue-500 to-cyan-600 p-1"
+                className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-pink-500 to-pink-700 p-1"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/40 to-cyan-700/40"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-600/40 to-pink-800/40"></div>
                 <div className="flex flex-col h-full bg-gray-950/95 rounded-3xl relative z-10 p-8">
-                  <div className="bg-blue-500/20 p-4 rounded-full w-fit mb-6">
-                    <Mic className="h-8 w-8 text-blue-400" />
+                  <div className="bg-pink-500/20 p-4 rounded-full w-fit mb-6">
+                    <CreditCard className="h-8 w-8 text-pink-400" />
                   </div>
-                  <h3 className="text-3xl font-bold text-white mb-4">AI & Media</h3>
+                  <h3 className="text-3xl font-bold text-white mb-4">Payment Gateway</h3>
                   <p className="text-gray-400 text-lg mb-6">
-                    AI-powered media processing tools
+                    Secure payment processing solutions with multiple payment methods and easy integration.
                   </p>
-                  <Link href="/docs/ai-media" className="mt-auto">
+                  <Link href="/docs/payment" className="mt-auto">
                     <Button 
-                      className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-3 w-full"
+                      className="bg-pink-600 hover:bg-pink-700 text-white rounded-full px-6 py-3 w-full"
                     >
                       Explore
                       <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -242,24 +242,24 @@ export default function HomePage() {
                 </div>
               </motion.div>
 
-              {/* Entertainment Card */}
+              {/* AI Card */}
               <motion.div
                 variants={fadeIn}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-orange-500 to-amber-600 p-1"
+                className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-blue-500 to-blue-700 p-1"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-600/40 to-amber-700/40"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/40 to-blue-800/40"></div>
                 <div className="flex flex-col h-full bg-gray-950/95 rounded-3xl relative z-10 p-8">
-                  <div className="bg-orange-500/20 p-4 rounded-full w-fit mb-6">
-                    <Mountain className="h-8 w-8 text-orange-400" />
+                  <div className="bg-blue-500/20 p-4 rounded-full w-fit mb-6">
+                    <Brain className="h-8 w-8 text-blue-400" />
                   </div>
-                  <h3 className="text-3xl font-bold text-white mb-4">Entertainment</h3>
+                  <h3 className="text-3xl font-bold text-white mb-4">AI</h3>
                   <p className="text-gray-400 text-lg mb-6">
-                    Fun and engaging content APIs
+                    AI-powered tools for image recognition, natural language processing, and more.
                   </p>
-                  <Link href="/docs/entertainment" className="mt-auto">
+                  <Link href="/docs/ai" className="mt-auto">
                     <Button 
-                      className="bg-orange-600 hover:bg-orange-700 text-white rounded-full px-6 py-3 w-full"
+                      className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-3 w-full"
                     >
                       Explore
                       <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
