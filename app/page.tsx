@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { motion, useAnimation } from "framer-motion"
-import { ArrowRight, Cloud, Code, Download, Image, Tv, Youtube, Music } from "lucide-react"
+import { ArrowRight, Cloud, Code, Download, Image, Tv, Youtube, Music, FileSpreadsheet, CreditCard, Brain } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useInView } from "react-intersection-observer"
 
@@ -113,7 +113,7 @@ export default function HomePage() {
                   <Cloud className="h-10 w-10 text-primary" />
                 </motion.div>
                 <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
-                  JKT48 API Documentation
+                  API Documentation
                 </h1>
                 <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl mt-4">
                   Powerful, reliable, and easy to integrate API services for your applications.
@@ -139,7 +139,7 @@ export default function HomePage() {
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/50">
           <div className="container px-4 md:px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">Our API Services</h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">Our API Categories</h2>
               <p className="mt-4 text-muted-foreground md:text-lg max-w-3xl mx-auto">
                 Explore our collection of powerful APIs designed to enhance your applications with minimal integration
                 effort.
@@ -147,7 +147,7 @@ export default function HomePage() {
             </div>
 
             <motion.div
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch"
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-2 items-stretch"
               ref={ref}
               initial="hidden"
               animate={controls}
@@ -159,24 +159,25 @@ export default function HomePage() {
                 },
               }}
             >
+              {/* JKT48 Card */}
               <motion.div
                 custom={0}
                 variants={cardVariants}
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
                 className="flex flex-col p-6 bg-background shadow-lg rounded-xl border border-muted hover:shadow-xl transition-all duration-300"
               >
-                <div className="p-3 bg-primary/10 rounded-full w-fit mb-6">
-                  <Cloud className="h-8 w-8 text-primary" />
+                <div className="p-3 bg-rose-500/20 rounded-full w-fit mb-6">
+                  <Tv className="h-8 w-8 text-rose-500" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3">Live API</h3>
+                <h3 className="text-2xl font-bold mb-3">JKT48</h3>
                 <p className="text-muted-foreground mb-6 flex-grow">
-                  Get accurate live jkt48 data in real-time idn and also showroom directly.
+                  Complete JKT48 data API services including live streams, member profiles, and performance data.
                 </p>
                 <div className="mt-auto pt-4">
-                  <Link href="/docs/live">
+                  <Link href="/docs/jkt48">
                     <Button
                       variant="outline"
-                      className="w-full group rounded-lg border-primary/20 hover:border-primary hover:bg-primary/5"
+                      className="w-full group rounded-lg border-rose-500/20 hover:border-rose-500 hover:bg-rose-500/5"
                     >
                       View Documentation
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -185,24 +186,25 @@ export default function HomePage() {
                 </div>
               </motion.div>
 
+              {/* Downloader Card */}
               <motion.div
                 custom={1}
                 variants={cardVariants}
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
                 className="flex flex-col p-6 bg-background shadow-lg rounded-xl border border-muted hover:shadow-xl transition-all duration-300"
               >
-                <div className="p-3 bg-primary/10 rounded-full w-fit mb-6">
-                  <Download className="h-8 w-8 text-primary" />
+                <div className="p-3 bg-purple-500/20 rounded-full w-fit mb-6">
+                  <Download className="h-8 w-8 text-purple-500" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3">IDN API</h3>
+                <h3 className="text-2xl font-bold mb-3">Downloader</h3>
                 <p className="text-muted-foreground mb-6 flex-grow">
-                  all live member data in real time on the IDN application platform.
+                  Download content from various platforms including YouTube, TikTok, Instagram, and more.
                 </p>
                 <div className="mt-auto pt-4">
-                  <Link href="/docs/idn">
+                  <Link href="/docs/downloader">
                     <Button
                       variant="outline"
-                      className="w-full group rounded-lg border-primary/20 hover:border-primary hover:bg-primary/5"
+                      className="w-full group rounded-lg border-purple-500/20 hover:border-purple-500 hover:bg-purple-500/5"
                     >
                       View Documentation
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -211,24 +213,25 @@ export default function HomePage() {
                 </div>
               </motion.div>
 
+              {/* Payment Gateway Card */}
               <motion.div
                 custom={2}
                 variants={cardVariants}
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
                 className="flex flex-col p-6 bg-background shadow-lg rounded-xl border border-muted hover:shadow-xl transition-all duration-300"
               >
-                <div className="p-3 bg-primary/10 rounded-full w-fit mb-6">
-                  <Tv className="h-8 w-8 text-primary" />
+                <div className="p-3 bg-pink-500/20 rounded-full w-fit mb-6">
+                  <CreditCard className="h-8 w-8 text-pink-500" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3">Showroom API</h3>
+                <h3 className="text-2xl font-bold mb-3">Payment Gateway</h3>
                 <p className="text-muted-foreground mb-6 flex-grow">
-                  All live JKT48 member data in real time on the Showroom application.
+                  Secure payment processing solutions with multiple payment methods and easy integration.
                 </p>
                 <div className="mt-auto pt-4">
-                  <Link href="/docs/showroom">
+                  <Link href="/docs/payment">
                     <Button
                       variant="outline"
-                      className="w-full group rounded-lg border-primary/20 hover:border-primary hover:bg-primary/5"
+                      className="w-full group rounded-lg border-pink-500/20 hover:border-pink-500 hover:bg-pink-500/5"
                     >
                       View Documentation
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -237,76 +240,25 @@ export default function HomePage() {
                 </div>
               </motion.div>
 
+              {/* AI Card */}
               <motion.div
                 custom={3}
                 variants={cardVariants}
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
                 className="flex flex-col p-6 bg-background shadow-lg rounded-xl border border-muted hover:shadow-xl transition-all duration-300"
               >
-                <div className="p-3 bg-primary/10 rounded-full w-fit mb-6">
-                  <Image className="h-8 w-8 text-primary" />
+                <div className="p-3 bg-blue-500/20 rounded-full w-fit mb-6">
+                  <Brain className="h-8 w-8 text-blue-500" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3">Recent Live API</h3>
+                <h3 className="text-2xl font-bold mb-3">AI & Media</h3>
                 <p className="text-muted-foreground mb-6 flex-grow">
-                Displays data on JKT48 members who previously went live along with the total nominal gift.
+                  AI-powered media processing tools for image recognition, natural language processing, and more.
                 </p>
                 <div className="mt-auto pt-4">
-                  <Link href="/docs/recent">
+                  <Link href="/docs/ai">
                     <Button
                       variant="outline"
-                      className="w-full group rounded-lg border-primary/20 hover:border-primary hover:bg-primary/5"
-                    >
-                      View Documentation
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </Link>
-                </div>
-              </motion.div>
-
-              <motion.div
-                custom={4}
-                variants={cardVariants}
-                whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                className="flex flex-col p-6 bg-background shadow-lg rounded-xl border border-muted hover:shadow-xl transition-all duration-300"
-              >
-                <div className="p-3 bg-primary/10 rounded-full w-fit mb-6">
-                  <Music className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-3">TikTok Downloader</h3>
-                <p className="text-muted-foreground mb-6 flex-grow">
-                  Download TikTok videos and audio by providing a valid TikTok video URL.
-                </p>
-                <div className="mt-auto pt-4">
-                  <Link href="/comingsoon">
-                    <Button
-                      variant="outline"
-                      className="w-full group rounded-lg border-primary/20 hover:border-primary hover:bg-primary/5"
-                    >
-                      View Documentation
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </Link>
-                </div>
-              </motion.div>
-
-              <motion.div
-                custom={5}
-                variants={cardVariants}
-                whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                className="flex flex-col p-6 bg-background shadow-lg rounded-xl border border-muted hover:shadow-xl transition-all duration-300"
-              >
-                <div className="p-3 bg-primary/10 rounded-full w-fit mb-6">
-                  <Youtube className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-3">YouTube Downloader</h3>
-                <p className="text-muted-foreground mb-6 flex-grow">
-                  Download YouTube videos and extract audio by providing a valid YouTube video URL.
-                </p>
-                <div className="mt-auto pt-4">
-                  <Link href="/comingsoon">
-                    <Button
-                      variant="outline"
-                      className="w-full group rounded-lg border-primary/20 hover:border-primary hover:bg-primary/5"
+                      className="w-full group rounded-lg border-blue-500/20 hover:border-blue-500 hover:bg-blue-500/5"
                     >
                       View Documentation
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -426,4 +378,3 @@ export default function HomePage() {
     </div>
   )
 }
-
