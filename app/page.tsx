@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { motion, useAnimation } from "framer-motion"
-import { ArrowRight, Cloud, Code, Download, Image, Mic, Mountain, FileSpreadsheet, CreditCard, Brain } from "lucide-react"
+import { ArrowRight, Cloud, Code, Download, Image, Tv, Youtube, Music, FileSpreadsheet, CreditCard, Brain, Mountain, Mic } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useInView } from "react-intersection-observer"
 
@@ -164,6 +164,32 @@ export default function HomePage() {
               animate={controls}
               variants={staggerContainer}
             >
+              {/* JKT48 Card */}
+              <motion.div
+                variants={fadeIn}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-rose-500 to-rose-700 p-1"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-rose-600/40 to-rose-800/40"></div>
+                <div className="flex flex-col h-full bg-gray-950/95 rounded-3xl relative z-10 p-8">
+                  <div className="bg-rose-500/20 p-4 rounded-full w-fit mb-6">
+                    <Tv className="h-8 w-8 text-rose-400" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-white mb-4">JKT48</h3>
+                  <p className="text-gray-400 text-lg mb-6">
+                    Complete JKT48 data API services
+                  </p>
+                  <Link href="/docs/jkt48" className="mt-auto">
+                    <Button 
+                      className="bg-rose-600 hover:bg-rose-700 text-white rounded-full px-6 py-3 w-full"
+                    >
+                      Explore
+                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </Link>
+                </div>
+              </motion.div>
+
               {/* Downloader Card */}
               <motion.div
                 variants={fadeIn}
@@ -208,32 +234,6 @@ export default function HomePage() {
                   <Link href="/docs/ai-media" className="mt-auto">
                     <Button 
                       className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-3 w-full"
-                    >
-                      Explore
-                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </Link>
-                </div>
-              </motion.div>
-
-              {/* Utilities Card */}
-              <motion.div
-                variants={fadeIn}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-pink-500 to-rose-600 p-1"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-600/40 to-rose-700/40"></div>
-                <div className="flex flex-col h-full bg-gray-950/95 rounded-3xl relative z-10 p-8">
-                  <div className="bg-pink-500/20 p-4 rounded-full w-fit mb-6">
-                    <FileSpreadsheet className="h-8 w-8 text-pink-400" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-white mb-4">Utilities</h3>
-                  <p className="text-gray-400 text-lg mb-6">
-                    Helpful tools for everyday tasks
-                  </p>
-                  <Link href="/docs/utilities" className="mt-auto">
-                    <Button 
-                      className="bg-pink-600 hover:bg-pink-700 text-white rounded-full px-6 py-3 w-full"
                     >
                       Explore
                       <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
