@@ -566,7 +566,7 @@ export default function HomePage() {
 function ApiKeyGenerationForm() {
   const redirectToWhatsApp = () => {
     const waText = encodeURIComponent(".generate");
-    const waLink = `https://wa.me/447818592493?text=${waText}`;
+    const waLink = `https://wa.me/6285198360849?text=${waText}`;
     window.location.href = waLink;
   };
 
