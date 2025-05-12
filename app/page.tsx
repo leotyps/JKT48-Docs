@@ -21,6 +21,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { useInView } from "react-intersection-observer"
 import { toast } from "@/lib/utils" // Replace with your preferred toast library
+import ServerStats from "./ServerStats" // Import the ServerStats component
 
 export default function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -151,6 +152,22 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* API Stats Section - NEWLY ADDED */}
+        <section className="w-full py-12 md:py-16 bg-muted/30">
+          <div className="container px-4 md:px-6">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                API Status & Statistics
+              </h2>
+              <p className="mt-2 text-muted-foreground">
+                Real-time statistics of our API platform
+              </p>
+            </div>
+            
+            <ServerStats />
+          </div>
+        </section>
+        
         {/* Service Categories Section - Updated with new categories */}
         <section className="w-full py-12 md:py-24 bg-gradient-to-b from-background to-muted/30">
           <div className="container px-4 md:px-6">
