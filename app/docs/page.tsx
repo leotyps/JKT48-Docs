@@ -26,6 +26,18 @@ import {
   Activity,
   Globe,
   Mail,
+  Monitor,
+  Clock,
+  Calendar,
+  Newspaper,
+  Youtube,
+  PlayCircle,
+  MessageSquare,
+  Film,
+  Music,
+  Database,
+  Heart,
+  Theater
 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -207,7 +219,7 @@ export default function DocsPage() {
   category: "jkt48",
   popular: true,
   status: "new",
-  version: "2.1.0-beta"
+  version: "2.1.0"
 },
 {
   title: "AI Image Generator",
