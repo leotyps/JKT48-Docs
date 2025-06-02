@@ -2,236 +2,220 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { motion } from "framer-motion"
-import { ArrowLeft, ArrowRight, Copy } from "lucide-react"
+import { ArrowLeft, Copy, Check, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { ApiBaseUrl } from "@/components/api-base-url"
-import { DocNavigation } from "@/components/doc-navigation"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function LiveStreamingDocPage() {
-  const [activeSection, setActiveSection] = useState("overview")
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState("")
 
-  const copyToClipboard = (text) => {
+  const copyToClipboard = (text, id) => {
     navigator.clipboard.writeText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    setCopied(id)
+    setTimeout(() => setCopied(""), 2000)
   }
+
+  const CopyButton = ({ text, id }) => (
+    <Button
+      variant="ghost"
+      size="sm"
+      className="absolute top-2 right-2 h-8 w-8 p-0"
+      onClick={() => copyToClipboard(text, id)}
+    >
+      {copied === id ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+    </Button>
+  )
 
   return (
-    <div className="container px-4 py-8 md:px-6 md:py-12 lg:py-16 max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-[250px_1fr] gap-8">
-        {/* Sidebar Navigation */}
-        <div className="md:sticky md:top-20 h-fit">
-          <motion.div
-            className="space-y-1"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Link href="/docs">
-              <Button variant="ghost" size="sm" className="w-full justify-start mb-4">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to API List
-              </Button>
-            </Link>
-            <Button
-              variant={activeSection === "overview" ? "default" : "ghost"}
-              size="sm"
-              className="w-full justify-start"
-              onClick={() => setActiveSection("overview")}
-            >
-              Overview
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-6 max-w-4xl">
+        {/* Header */}
+        <div className="mb-6">
+          <Link href="/docs">
+            <Button variant="ghost" size="sm" className="mb-4">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Docs
             </Button>
-            <Button
-              variant={activeSection === "request" ? "default" : "ghost"}
-              size="sm"
-              className="w-full justify-start"
-              onClick={() => setActiveSection("request")}
-            >
-              Request Method
-            </Button>
-            <Button
-              variant={activeSection === "response" ? "default" : "ghost"}
-              size="sm"
-              className="w-full justify-start"
-              onClick={() => setActiveSection("response")}
-            >
-              Response Format
-            </Button>
-            <Button
-              variant={activeSection === "guidelines" ? "default" : "ghost"}
-              size="sm"
-              className="w-full justify-start"
-              onClick={() => setActiveSection("guidelines")}
-            >
-              Usage Guidelines
-            </Button>
-          </motion.div>
+          </Link>
+          <div className="space-y-2">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <h1 className="text-2xl sm:text-3xl font-bold">Live Streaming API</h1>
+              <Badge variant="outline">v2.1</Badge>
+            </div>
+            <p className="text-muted-foreground">
+              Get real-time JKT48 live streaming data from YouTube, IDN, and Showroom platforms.
+            </p>
+          </div>
         </div>
 
-        {/* Main Content */}
-        <motion.div
-          className="space-y-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <h1 className="text-3xl font-bold tracking-tight">Live Streaming API Documentation</h1>
-              <Badge variant="outline" className="ml-2">v3.0.14</Badge>
-            </div>
-            <p className="text-muted-foreground">Fetch complete live streaming data for JKT48 members across YouTube, IDN Platforms, and Showroom.</p>
-          </div>
-
-          <ApiBaseUrl url="https://api.jkt48connect.my.id/api/live" />
-
-          <Separator />
-
-          {/* Overview Section */}
-          <section id="overview" className={activeSection === "overview" ? "block" : "hidden"}>
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold">Overview</h2>
-              <p>The Live Streaming API provides real-time streaming details for JKT48 members, including YouTube (JKT48V), IDN Platforms, and Showroom.</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                <div className="border rounded-lg p-4 bg-card">
-                  <h3 className="font-medium mb-2">Features</h3>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-center"><ArrowRight className="h-4 w-4 mr-2 text-primary" />Complete live streaming metadata</li>
-                    <li className="flex items-center"><ArrowRight className="h-4 w-4 mr-2 text-primary" />Streaming URLs with quality labels</li>
-                    <li className="flex items-center"><ArrowRight className="h-4 w-4 mr-2 text-primary" />Chat room and room IDs</li>
-                    <li className="flex items-center"><ArrowRight className="h-4 w-4 mr-2 text-primary" />Platform types: youtube, idn, showroom</li>
-                  </ul>
-                </div>
-                <div className="border rounded-lg p-4 bg-card">
-                  <h3 className="font-medium mb-2">Quick Start</h3>
-                  <p className="text-sm mb-2">Make a GET request to:</p>
-                  <div className="relative">
-                    <code className="text-xs block bg-muted p-2 rounded overflow-x-auto whitespace-pre-wrap break-all">
-                      https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY
-                    </code>
-                  </div>
-                </div>
+        {/* Quick Info */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="text-lg">Quick Info</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+              <div>
+                <span className="font-medium">Endpoint:</span>
+                <code className="ml-2 text-xs bg-muted px-2 py-1 rounded">
+                  /api/jkt48/live
+                </code>
+              </div>
+              <div>
+                <span className="font-medium">Method:</span>
+                <Badge variant="secondary" className="ml-2">GET</Badge>
               </div>
             </div>
-          </section>
+            <div className="relative">
+              <CopyButton 
+                text="https://v2.jkt48connect.my.id/api/jkt48/live?apikey=YOUR_API_KEY" 
+                id="base-url" 
+              />
+              <code className="block bg-muted p-3 rounded text-xs overflow-x-auto">
+                https://v2.jkt48connect.my.id/api/jkt48/live?apikey=YOUR_API_KEY
+              </code>
+            </div>
+          </CardContent>
+        </Card>
 
-          {/* Request Method Section */}
-          <section id="request" className={activeSection === "request" ? "block" : "hidden"}>
+        {/* Code Examples */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="text-lg">Code Examples</CardTitle>
+            <CardDescription>
+              Choose your preferred method to access the Live Streaming API
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Tabs defaultValue="http" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4">
+                <TabsTrigger value="http">HTTP</TabsTrigger>
+                <TabsTrigger value="nodejs">Node.js</TabsTrigger>
+                <TabsTrigger value="curl">cURL</TabsTrigger>
+                <TabsTrigger value="jkt48core">@jkt48/core</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="http" className="relative">
+                <CopyButton 
+                  text="GET https://v2.jkt48connect.my.id/api/jkt48/live?apikey=YOUR_API_KEY" 
+                  id="http" 
+                />
+                <pre className="bg-muted p-4 rounded-md overflow-x-auto">
+                  <code className="text-sm">
+{`GET https://v2.jkt48connect.my.id/api/jkt48/live?apikey=YOUR_API_KEY
+Content-Type: application/json`}
+                  </code>
+                </pre>
+              </TabsContent>
+
+              <TabsContent value="nodejs" className="relative">
+                <CopyButton 
+                  text={`const response = await fetch('https://v2.jkt48connect.my.id/api/jkt48/live?apikey=YOUR_API_KEY');
+const data = await response.json();
+console.log(data);`}
+                  id="nodejs" 
+                />
+                <pre className="bg-muted p-4 rounded-md overflow-x-auto">
+                  <code className="text-sm">
+{`const response = await fetch('https://v2.jkt48connect.my.id/api/jkt48/live?apikey=YOUR_API_KEY');
+const data = await response.json();
+console.log(data);`}
+                  </code>
+                </pre>
+              </TabsContent>
+
+              <TabsContent value="curl" className="relative">
+                <CopyButton 
+                  text={`curl -X GET "https://v2.jkt48connect.my.id/api/jkt48/live?apikey=YOUR_API_KEY"`}
+                  id="curl" 
+                />
+                <pre className="bg-muted p-4 rounded-md overflow-x-auto">
+                  <code className="text-sm">
+{`curl -X GET "https://v2.jkt48connect.my.id/api/jkt48/live?apikey=YOUR_API_KEY"`}
+                  </code>
+                </pre>
+              </TabsContent>
+
+              <TabsContent value="jkt48core" className="relative">
+                <CopyButton 
+                  text={`const jkt48Api = require('@jkt48/core');
+
+async function getLiveData() {
+  try {
+    const apiKey = 'YOUR_API_KEY';
+    const liveData = await jkt48Api.live(apiKey);
+    console.log(liveData);
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+}
+
+getLiveData();`}
+                  id="jkt48core" 
+                />
+                <pre className="bg-muted p-4 rounded-md overflow-x-auto">
+                  <code className="text-sm">
+{`const jkt48Api = require('@jkt48/core');
+
+async function getLiveData() {
+  try {
+    const apiKey = 'YOUR_API_KEY';
+    const liveData = await jkt48Api.live(apiKey);
+    console.log(liveData);
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+}
+
+getLiveData();`}
+                  </code>
+                </pre>
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
+
+        {/* Installation */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="text-lg">@jkt48/core Installation</CardTitle>
+            <CardDescription>
+              Install the official JKT48 Node.js package for easier integration
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
             <div className="space-y-4">
-              <h2 className="text-2xl font-bold">1. Request Method</h2>
-              <div className="space-y-2">
-                <h3 className="text-xl font-semibold">GET /api/live</h3>
-                <p>Retrieves live streaming data for JKT48 members.</p>
+              <div className="relative">
+                <CopyButton text="npm install @jkt48/core" id="npm-install" />
+                <pre className="bg-muted p-3 rounded-md">
+                  <code className="text-sm">npm install @jkt48/core</code>
+                </pre>
               </div>
-
-              <div className="space-y-2">
-                <h3 className="text-lg font-semibold">Query Parameters</h3>
-                <div className="overflow-x-auto">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Parameter</TableHead>
-                        <TableHead>Type</TableHead>
-                        <TableHead>Required</TableHead>
-                        <TableHead>Description</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell className="font-mono">api_key</TableCell>
-                        <TableCell>string</TableCell>
-                        <TableCell>Yes</TableCell>
-                        <TableCell>Your API key for authentication</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <h3 className="text-lg font-semibold">Example Request</h3>
-                <Tabs defaultValue="curl">
-                  <TabsList className="mb-2">
-                    <TabsTrigger value="curl">cURL</TabsTrigger>
-                    <TabsTrigger value="js">JavaScript</TabsTrigger>
-                    <TabsTrigger value="python">Python</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="curl" className="relative">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="absolute top-2 right-2 h-8 w-8"
-                      onClick={() => copyToClipboard('curl -X GET "https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY"')}
-                    >
-                      <Copy className="h-4 w-4" />
-                    </Button>
-                    <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                      <code className="text-sm">{`curl -X GET "https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY"`}</code>
-                    </pre>
-                  </TabsContent>
-                  <TabsContent value="js" className="relative">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="absolute top-2 right-2 h-8 w-8"
-                      onClick={() => copyToClipboard(`fetch("https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY")
-  .then(res => res.json())
-  .then(data => console.log(data))
-  .catch(err => console.error(err));`)}
-                    >
-                      <Copy className="h-4 w-4" />
-                    </Button>
-                    <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                      <code className="text-sm">{`fetch("https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY")
-  .then(res => res.json())
-  .then(data => console.log(data))
-  .catch(err => console.error(err));`}</code>
-                    </pre>
-                  </TabsContent>
-                  <TabsContent value="python" className="relative">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="absolute top-2 right-2 h-8 w-8"
-                      onClick={() => copyToClipboard(`import requests
-
-response = requests.get("https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY")
-print(response.json())`)}
-                    >
-                      <Copy className="h-4 w-4" />
-                    </Button>
-                    <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                      <code className="text-sm">{`import requests
-
-response = requests.get("https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY")
-print(response.json())`}</code>
-                    </pre>
-                  </TabsContent>
-                </Tabs>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <ExternalLink className="h-4 w-4" />
+                <span>Learn more at</span>
+                <Link href="https://docs.jkt48connect.my.id" className="text-primary hover:underline">
+                  docs.jkt48connect.my.id
+                </Link>
               </div>
             </div>
-          </section>
+          </CardContent>
+        </Card>
 
-          {/* Response Format Section */}
-          <section id="response" className={activeSection === "response" ? "block" : "hidden"}>
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold">2. Response Format</h2>
-
-              <div className="space-y-2">
-                <h3 className="text-xl font-semibold">Success Response</h3>
-                <p className="text-sm mb-1"><Badge variant="outline">Status Code: 200 OK</Badge></p>
-                <div className="relative">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute top-2 right-2 h-8 w-8"
-                    onClick={() => copyToClipboard(`[
+        {/* Response Example */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="text-lg">Response Example</CardTitle>
+            <CardDescription>
+              Sample JSON response from the Live Streaming API
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="relative">
+              <CopyButton 
+                text={`[
   {
     "name": "Fritzy",
     "img": "https://cdn.idntimes.com/content-images/post/20250406/717109e0-a064-4f15-8187-5c4d46e56a58-250406190348.jpg",
@@ -252,12 +236,12 @@ print(response.json())`}</code>
     ],
     "type": "idn"
   }
-]`)}
-                  >
-                    <Copy className="h-4 w-4" />
-                  </Button>
-                  <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                    <code className="text-sm">{`[
+]`}
+                id="response" 
+              />
+              <pre className="bg-muted p-4 rounded-md overflow-x-auto text-xs">
+                <code>
+{`[
   {
     "name": "Fritzy",
     "img": "https://cdn.idntimes.com/content-images/post/20250406/717109e0-a064-4f15-8187-5c4d46e56a58-250406190348.jpg",
@@ -278,79 +262,81 @@ print(response.json())`}</code>
     ],
     "type": "idn"
   }
-]`}</code>
-                  </pre>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <h3 className="text-xl font-semibold">Error Responses</h3>
-
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-sm mb-1">
-                      <Badge variant="outline" className="text-destructive border-destructive">Status Code: 400 Bad Request</Badge>
-                      <span className="ml-2 text-sm">Missing <code className="text-xs bg-muted px-1 py-0.5 rounded">api_key</code> parameter</span>
-                    </p>
-                    <div className="relative">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="absolute top-2 right-2 h-8 w-8"
-                        onClick={() => copyToClipboard(`{ "error": "API key is required" }`)}
-                      >
-                        <Copy className="h-4 w-4" />
-                      </Button>
-                      <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                        <code className="text-sm">{`{ "error": "API key is required" }`}</code>
-                      </pre>
-                    </div>
-                  </div>
-                  <div>
-                    <p className="text-sm mb-1">
-                      <Badge variant="outline" className="text-destructive border-destructive">Status Code: 401 Unauthorized</Badge>
-                      <span className="ml-2 text-sm">Invalid <code className="text-xs bg-muted px-1 py-0.5 rounded">api_key</code></span>
-                    </p>
-                    <div className="relative">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="absolute top-2 right-2 h-8 w-8"
-                        onClick={() => copyToClipboard(`{ "error": "Invalid API key" }`)}
-                      >
-                        <Copy className="h-4 w-4" />
-                      </Button>
-                      <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                        <code className="text-sm">{`{ "error": "Invalid API key" }`}</code>
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
+]`}
+                </code>
+              </pre>
             </div>
-          </section>
+          </CardContent>
+        </Card>
 
-          {/* Usage Guidelines Section */}
-          <section id="guidelines" className={activeSection === "guidelines" ? "block" : "hidden"}>
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold">3. Usage Guidelines</h2>
-              <ul className="space-y-3">
-                <li className="flex items-start"><ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary" /><span>Include a valid <code className="text-xs bg-muted px-1 py-0.5 rounded">api_key</code> with each request</span></li>
-                <li className="flex items-start"><ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary" /><span>Responses are returned in <strong>JSON format</strong></span></li>
-                <li className="flex items-start"><ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary" /><span>Respect rate limits to avoid being throttled</span></li>
-                <li className="flex items-start"><ArrowRight className="h-5 w-5 mr-2 mt-0.5 text-primary" /><span>Check <code className="text-xs bg-muted px-1 py-0.5 rounded">type</code> field for platform source</span></li>
+        {/* Parameters & Features */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Parameters</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <code className="text-sm bg-muted px-2 py-1 rounded">apikey</code>
+                  <Badge variant="destructive" className="text-xs">Required</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Your API key for authentication
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Features</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2 text-sm">
+                <li>• Multi-platform support (YouTube, IDN, Showroom)</li>
+                <li>• Real-time streaming data</li>
+                <li>• Chat room integration</li>
+                <li>• Stream quality information</li>
+                <li>• Member status tracking</li>
               </ul>
-            </div>
-          </section>
+            </CardContent>
+          </Card>
+        </div>
 
-          <DocNavigation
-            activeSection={activeSection}
-            sections={["overview", "request", "response", "guidelines"]}
-            sectionTitles={{ overview: "Overview", request: "Request Method", response: "Response Format", guidelines: "Usage Guidelines" }}
-            setActiveSection={setActiveSection}
-            apiUrl="https://api.jkt48connect.my.id/api/live?api_key=YOUR_API_KEY"
-          />
-        </motion.div>
+        {/* API Keys */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">API Keys</CardTitle>
+            <CardDescription>
+              Use free API keys or get custom keys for advanced features
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-medium mb-2">Free API Keys</h4>
+                <div className="flex flex-wrap gap-2">
+                  <code className="bg-muted px-2 py-1 rounded text-sm">J-D55B</code>
+                  <code className="bg-muted px-2 py-1 rounded text-sm">J-QV0Z</code>
+                </div>
+              </div>
+              <div>
+                <h4 className="font-medium mb-2">Custom API Keys</h4>
+                <p className="text-sm text-muted-foreground mb-2">
+                  For Premium and Premium+ plans, contact Valzy:
+                </p>
+                <Link 
+                  href="https://wa.me/6285701479245" 
+                  className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  WhatsApp: +62 857-0147-9245
+                </Link>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   )
