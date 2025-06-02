@@ -1,3 +1,4 @@
+
 "use client"
 
 import type React from "react"
@@ -21,6 +22,12 @@ import {
   Zap,
   Wrench,
   Video,
+  Users,
+  Calendar,
+  MessageSquare,
+  Globe,
+  Play,
+  Newspaper,
 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -53,7 +60,7 @@ export default function DocsPage() {
   // Use a ref to track if this is the initial render
   const isInitialMount = useRef(true)
 
-  // Reorganized APIs according to the requested categories
+  // Updated APIs with new JKT48 features
   const apis: ApiItem[] = [
     {
       title: "Live API",
@@ -61,9 +68,9 @@ export default function DocsPage() {
       icon: <Video className="h-8 w-8 text-primary" />,
       href: "/docs/live",
       iconBg: "bg-primary/10",
-      badge: "v3.0.14",
-      examples: ["Get Data Live Delynn", "All Live Member", "Live Video Url"],
-      keywords: ["live", "live jkt48", "jkt48", "member live", "top"],
+      badge: "v2.0",
+      examples: ["Get Data Live Delynn", "All Live Member", "Live Video Url", "Live YouTube Info", "Live IDN Info"],
+      keywords: ["live", "live jkt48", "jkt48", "member live", "top", "youtube", "idn", "showroom"],
       category: "jkt48",
       featured: true,
     },
@@ -73,9 +80,9 @@ export default function DocsPage() {
       icon: <Video className="h-8 w-8 text-primary" />,
       href: "/docs/idn",
       iconBg: "bg-primary/10",
-      badge: "v3.0.14",
-      examples: ["Idn live", "Live idn jkt48", "Live", "live jkt48", "Jkt48"],
-      keywords: ["idn", "idn live", "realtime", "jkt48 live member", "member jkt48"],
+      badge: "v2.0",
+      examples: ["Idn live", "Live idn jkt48", "Live", "live jkt48", "Jkt48", "IDN Chat Stream"],
+      keywords: ["idn", "idn live", "realtime", "jkt48 live member", "member jkt48", "chat stream"],
       category: "jkt48",
     },
     {
@@ -84,9 +91,9 @@ export default function DocsPage() {
       icon: <Video className="h-8 w-8 text-primary" />,
       href: "/docs/showroom",
       iconBg: "bg-primary/10",
-      badge: "v3.0.14",
-      examples: ["Live Kramat Kwkwk", "Live Showroom", "Freya SR😱"],
-      keywords: ["jkt48", "Live Showroom", "Showroom", "SR", "Live jkt48"],
+      badge: "v2.0",
+      examples: ["Live Kramat Kwkwk", "Live Showroom", "Freya SR😱", "Showroom Chat Stream"],
+      keywords: ["jkt48", "Live Showroom", "Showroom", "SR", "Live jkt48", "chat stream"],
       category: "jkt48",
     },
     {
@@ -95,10 +102,89 @@ export default function DocsPage() {
       icon: <Wrench className="h-8 w-8 text-primary" />,
       href: "/docs/recent",
       iconBg: "bg-primary/10",
-      badge: "v3.0.14",
-      examples: ["Total Gift Delynn", "Waktu Live Freya", "Freya SR😱"],
-      keywords: ["jkt48", "Recent live", "Live Gift", "Gift total", "Live jkt48"],
+      badge: "v2.0",
+      examples: ["Total Gift Delynn", "Waktu Live Freya", "Recent Detail", "Live Activity"],
+      keywords: ["jkt48", "Recent live", "Live Gift", "Gift total", "Live jkt48", "recent detail"],
       category: "jkt48",
+    },
+    {
+      title: "Members API",
+      description: "Get comprehensive JKT48 member information including profiles, details, and birthdays.",
+      icon: <Users className="h-8 w-8 text-primary" />,
+      href: "/docs/members",
+      iconBg: "bg-blue-500/10",
+      badge: "v2.0",
+      examples: ["Get All Members", "Member Details by Name", "Birthday List", "Feni Profile"],
+      keywords: ["jkt48", "members", "profile", "birthday", "member detail", "feni", "member list"],
+      category: "jkt48",
+      featured: true,
+    },
+    {
+      title: "Events API",
+      description: "Access JKT48 event information and schedules.",
+      icon: <Calendar className="h-8 w-8 text-primary" />,
+      href: "/docs/events",
+      iconBg: "bg-green-500/10",
+      badge: "v2.0",
+      examples: ["Upcoming Events", "Event Schedule", "Concert Info", "Meet & Greet"],
+      keywords: ["jkt48", "events", "schedule", "concert", "meet greet", "calendar"],
+      category: "jkt48",
+    },
+    {
+      title: "News API",
+      description: "Get latest JKT48 news and detailed news information.",
+      icon: <Newspaper className="h-8 w-8 text-primary" />,
+      href: "/docs/news",
+      iconBg: "bg-yellow-500/10",
+      badge: "v2.0",
+      examples: ["Latest News", "News Details", "Announcements", "Member Updates"],
+      keywords: ["jkt48", "news", "announcements", "updates", "news detail", "latest"],
+      category: "jkt48",
+    },
+    {
+      title: "Theater API",
+      description: "Access JKT48 theater show information and detailed schedules.",
+      icon: <Tv className="h-8 w-8 text-primary" />,
+      href: "/docs/theater",
+      iconBg: "bg-purple-500/10",
+      badge: "v2.0",
+      examples: ["Theater Schedule", "Show Details", "Performance Info", "Setlist"],
+      keywords: ["jkt48", "theater", "show", "performance", "schedule", "setlist"],
+      category: "jkt48",
+    },
+    {
+      title: "YouTube API",
+      description: "Get JKT48 YouTube content and video information.",
+      icon: <Youtube className="h-8 w-8 text-primary" />,
+      href: "/docs/youtube",
+      iconBg: "bg-red-500/10",
+      badge: "v2.0",
+      examples: ["Latest Videos", "YouTube Content", "Music Videos", "Variety Shows"],
+      keywords: ["jkt48", "youtube", "videos", "music video", "variety", "content"],
+      category: "jkt48",
+    },
+    {
+      title: "Replay API",
+      description: "Access JKT48 replay data and archived live streams.",
+      icon: <Play className="h-8 w-8 text-primary" />,
+      href: "/docs/replay",
+      iconBg: "bg-indigo-500/10",
+      badge: "v2.0",
+      examples: ["Replay Data", "Archived Streams", "Past Lives", "Replay Links"],
+      keywords: ["jkt48", "replay", "archive", "past live", "recorded", "stream"],
+      category: "jkt48",
+    },
+    {
+      title: "Chat Stream API",
+      description: "Get real-time chat stream data from IDN and Showroom platforms.",
+      icon: <MessageSquare className="h-8 w-8 text-primary" />,
+      href: "/docs/chat-stream",
+      iconBg: "bg-cyan-500/10",
+      badge: "v2.0 NEW",
+      examples: ["IDN Chat Stream", "Showroom Chat Stream", "Real-time Messages", "Chat Data"],
+      keywords: ["jkt48", "chat", "stream", "real-time", "idn chat", "showroom chat", "messages"],
+      category: "jkt48",
+      popular: true,
     },
     {
       title: "Brat API",
@@ -195,9 +281,15 @@ export default function DocsPage() {
     },
   ]
 
-  // Categories with icons
+  // Updated categories with icons
   const categories = [
     { id: "all", name: "All APIs", icon: <Zap className="h-4 w-4 mr-2" />, count: apis.length },
+    {
+      id: "jkt48",
+      name: "JKT48",
+      icon: <Users className="h-4 w-4 mr-2" />,
+      count: apis.filter((api) => api.category === "jkt48").length,
+    },
     {
       id: "tools",
       name: "Tools",
@@ -211,8 +303,8 @@ export default function DocsPage() {
       count: apis.filter((api) => api.category === "download").length,
     },
     {
-      id: "jkt48",
-      name: "JKT48",
+      id: "anime",
+      name: "Anime",
       icon: <Tv className="h-4 w-4 mr-2" />,
       count: apis.filter((api) => api.category === "anime").length,
     },
@@ -335,7 +427,7 @@ export default function DocsPage() {
             API Documentation
           </h1>
           <p className="text-xl text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Explore our collection of powerful and easy-to-use APIs designed to enhance your applications.
+            Explore our collection of powerful and easy-to-use APIs designed to enhance your applications with JKT48 v2.0 features.
           </p>
         </div>
 
@@ -487,11 +579,13 @@ export default function DocsPage() {
                           variant="secondary"
                           className={`
                           flex items-center gap-1 text-xs font-medium
+                          ${api.category === "jkt48" ? "bg-pink-500/10 text-pink-600 dark:text-pink-400" : ""}
                           ${api.category === "tools" ? "bg-blue-500/10 text-blue-600 dark:text-blue-400" : ""}
                           ${api.category === "download" ? "bg-green-500/10 text-green-600 dark:text-green-400" : ""}
                           ${api.category === "anime" ? "bg-purple-500/10 text-purple-600 dark:text-purple-400" : ""}
                         `}
                         >
+                          {api.category === "jkt48" && <Users className="h-3 w-3 mr-1" />}
                           {api.category === "tools" && <Wrench className="h-3 w-3 mr-1" />}
                           {api.category === "download" && <Download className="h-3 w-3 mr-1" />}
                           {api.category === "anime" && <Tv className="h-3 w-3 mr-1" />}
@@ -526,7 +620,12 @@ export default function DocsPage() {
                           >
                             {api.icon}
                           </div>
-                          <Badge variant="outline" className="transition-colors group-hover:bg-primary/10">
+                          <Badge 
+                            variant="outline" 
+                            className={`transition-colors group-hover:bg-primary/10 ${
+                              api.badge.includes('NEW') ? 'bg-green-500/10 text-green-600 border-green-500/20' : ''
+                            }`}
+                          >
                             {api.badge}
                           </Badge>
                         </div>
@@ -607,4 +706,3 @@ export default function DocsPage() {
     </div>
   )
 }
-
