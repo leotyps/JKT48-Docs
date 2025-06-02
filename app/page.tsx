@@ -76,17 +76,17 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
       <div className="flex-1">
-        {/* Hero Section - Completely Redesigned */}
-        <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-          {/* Background Elements */}
+        {/* Hero Section - Mobile Optimized */}
+        <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden px-4">
+          {/* Background Elements - Smaller on mobile */}
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/5 to-pink-600/10" />
             
-            {/* Animated Orbs */}
+            {/* Animated Orbs - Responsive sizes */}
             {isLoaded && (
               <>
                 <motion.div
-                  className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl"
+                  className="absolute top-1/4 left-1/4 w-48 h-48 md:w-96 md:h-96 rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl"
                   animate={{
                     x: [0, 50, 0],
                     y: [0, -50, 0],
@@ -99,7 +99,7 @@ export default function HomePage() {
                   }}
                 />
                 <motion.div
-                  className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-gradient-to-r from-pink-400/20 to-rose-400/20 blur-3xl"
+                  className="absolute bottom-1/4 right-1/4 w-32 h-32 md:w-80 md:h-80 rounded-full bg-gradient-to-r from-pink-400/20 to-rose-400/20 blur-3xl"
                   animate={{
                     x: [0, -60, 0],
                     y: [0, 60, 0],
@@ -112,7 +112,7 @@ export default function HomePage() {
                   }}
                 />
                 <motion.div
-                  className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full bg-gradient-to-r from-green-400/15 to-teal-400/15 blur-3xl"
+                  className="absolute top-1/2 right-1/3 w-24 h-24 md:w-64 md:h-64 rounded-full bg-gradient-to-r from-green-400/15 to-teal-400/15 blur-3xl"
                   animate={{
                     x: [0, 40, 0],
                     y: [0, -40, 0],
@@ -128,24 +128,24 @@ export default function HomePage() {
             )}
           </div>
 
-          <div className="container px-4 md:px-6 relative z-10">
+          <div className="container px-4 md:px-6 relative z-10 max-w-6xl mx-auto">
             <motion.div
-              className="max-w-5xl mx-auto text-center"
+              className="text-center"
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
             >
-              {/* Badge */}
-              <motion.div variants={fadeInUp} className="mb-8">
-                <Badge className="px-4 py-2 text-sm font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0 shadow-lg">
-                  <Sparkles className="w-4 h-4 mr-2" />
+              {/* Badge - Responsive */}
+              <motion.div variants={fadeInUp} className="mb-6 md:mb-8">
+                <Badge className="px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0 shadow-lg">
+                  <Sparkles className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
                   Now with Real-time Data
                 </Badge>
               </motion.div>
 
-              {/* Main Heading */}
+              {/* Main Heading - Mobile responsive */}
               <motion.div variants={fadeInUp}>
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-4 md:mb-6 leading-tight">
                   <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                     JKT48
                   </span>
@@ -156,68 +156,68 @@ export default function HomePage() {
                 </h1>
               </motion.div>
 
-              {/* Subtitle */}
+              {/* Subtitle - Mobile optimized */}
               <motion.p 
                 variants={fadeInUp}
-                className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+                className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 md:mb-12 max-w-4xl mx-auto leading-relaxed px-4"
               >
                 The most comprehensive and reliable API ecosystem for JKT48 data, 
                 content downloads, AI services, and payment processing.
               </motion.p>
 
-              {/* CTA Buttons */}
+              {/* CTA Buttons - Mobile stack */}
               <motion.div 
                 variants={fadeInUp}
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+                className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center mb-12 md:mb-16 px-4"
               >
-                <Link href="/docs">
+                <Link href="/docs" className="w-full sm:w-auto">
                   <Button 
                     size="lg" 
-                    className="group px-8 py-4 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-0 shadow-xl hover:shadow-2xl transition-all duration-300"
+                    className="group w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-0 shadow-xl hover:shadow-2xl transition-all duration-300"
                   >
-                    <Rocket className="w-5 h-5 mr-2" />
+                    <Rocket className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                     Start Building
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
                 
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="px-8 py-4 text-lg font-semibold border-2 border-slate-300 hover:border-slate-400 bg-white/50 backdrop-blur-sm hover:bg-white/80 transition-all duration-300"
+                  className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold border-2 border-slate-300 hover:border-slate-400 bg-white/50 backdrop-blur-sm hover:bg-white/80 transition-all duration-300"
                 >
-                  <Play className="w-5 h-5 mr-2" />
+                  <Play className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                   View Demo
                 </Button>
               </motion.div>
 
-              {/* Stats */}
+              {/* Stats - Mobile responsive grid */}
               <motion.div 
                 variants={fadeInUp}
-                className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto"
+                className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 max-w-2xl mx-auto px-4"
               >
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-slate-800 dark:text-slate-100">50+</div>
-                  <div className="text-slate-600 dark:text-slate-400">API Endpoints</div>
+                  <div className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">50+</div>
+                  <div className="text-sm md:text-base text-slate-600 dark:text-slate-400">API Endpoints</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-slate-800 dark:text-slate-100">99.9%</div>
-                  <div className="text-slate-600 dark:text-slate-400">Uptime</div>
+                  <div className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">99.9%</div>
+                  <div className="text-sm md:text-base text-slate-600 dark:text-slate-400">Uptime</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-slate-800 dark:text-slate-100">1M+</div>
-                  <div className="text-slate-600 dark:text-slate-400">API Calls/Month</div>
+                  <div className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">1M+</div>
+                  <div className="text-sm md:text-base text-slate-600 dark:text-slate-400">API Calls/Month</div>
                 </div>
               </motion.div>
             </motion.div>
           </div>
         </section>
 
-        {/* Live Stats Section - Enhanced */}
-        <section className="w-full py-20 bg-white/50 dark:bg-slate-900 backdrop-blur-sm border-y border-slate-200 dark:border-slate-700">
+        {/* Live Stats Section - Mobile padding */}
+        <section className="w-full py-16 md:py-20 bg-white/50 dark:bg-slate-900 backdrop-blur-sm border-y border-slate-200 dark:border-slate-700">
           <div className="container px-4 md:px-6">
             <motion.div 
-              className="text-center mb-12"
+              className="text-center mb-8 md:mb-12"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -226,10 +226,10 @@ export default function HomePage() {
                 <Activity className="w-4 h-4 mr-2" />
                 Live Status
               </Badge>
-              <h2 className="text-4xl font-bold text-slate-800 dark:text-slate-100 mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-slate-100 mb-4">
                 Real-time Platform Statistics
               </h2>
-              <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
+              <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg max-w-2xl mx-auto px-4">
                 Monitor our API performance and usage statistics in real-time
               </p>
             </motion.div>
@@ -238,11 +238,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Service Categories - Modern Cards */}
-        <section className="w-full py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-800 dark:to-slate-900">
+        {/* Service Categories - Mobile responsive cards */}
+        <section className="w-full py-16 md:py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-800 dark:to-slate-900">
           <div className="container px-4 md:px-6">
             <motion.div 
-              className="text-center mb-16"
+              className="text-center mb-12 md:mb-16"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -251,33 +251,33 @@ export default function HomePage() {
                 <Globe className="w-4 h-4 mr-2" />
                 API Categories
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-100 mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 dark:text-slate-100 mb-6">
                 Complete API Ecosystem
               </h2>
-              <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto px-4">
                 From JKT48 live data to AI-powered services, we've got everything you need
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* JKT48 Card */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+              {/* Service Cards - Mobile optimized */}
               <motion.div
-                whileHover={{ y: -10, scale: 1.02 }}
+                whileHover={{ y: -5, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
                 className="group"
               >
                 <Card className="h-full border-0 shadow-xl bg-gradient-to-br from-pink-500 to-rose-600 text-white overflow-hidden relative">
                   <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
-                  <CardHeader className="relative z-10">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
-                      <Music className="h-6 w-6" />
+                  <CardHeader className="relative z-10 p-4 md:p-6">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-xl flex items-center justify-center mb-3 md:mb-4">
+                      <Music className="h-5 w-5 md:h-6 md:w-6" />
                     </div>
-                    <CardTitle className="text-2xl font-bold">JKT48</CardTitle>
-                    <CardDescription className="text-white/90">
+                    <CardTitle className="text-xl md:text-2xl font-bold">JKT48</CardTitle>
+                    <CardDescription className="text-white/90 text-sm md:text-base">
                       Real-time member data, live streams, and exclusive content
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="relative z-10">
+                  <CardContent className="relative z-10 p-4 md:p-6 pt-0">
                     <div className="flex items-center text-sm text-white/80">
                       <CheckCircle className="w-4 h-4 mr-2" />
                       15+ Endpoints
@@ -286,24 +286,24 @@ export default function HomePage() {
                 </Card>
               </motion.div>
 
-              {/* Downloader Card */}
+              {/* Repeat similar mobile optimizations for other cards */}
               <motion.div
-                whileHover={{ y: -10, scale: 1.02 }}
+                whileHover={{ y: -5, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
                 className="group"
               >
                 <Card className="h-full border-0 shadow-xl bg-gradient-to-br from-purple-500 to-indigo-600 text-white overflow-hidden relative">
                   <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
-                  <CardHeader className="relative z-10">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
-                      <Download className="h-6 w-6" />
+                  <CardHeader className="relative z-10 p-4 md:p-6">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-xl flex items-center justify-center mb-3 md:mb-4">
+                      <Download className="h-5 w-5 md:h-6 md:w-6" />
                     </div>
-                    <CardTitle className="text-2xl font-bold">Downloader</CardTitle>
-                    <CardDescription className="text-white/90">
+                    <CardTitle className="text-xl md:text-2xl font-bold">Downloader</CardTitle>
+                    <CardDescription className="text-white/90 text-sm md:text-base">
                       Multi-platform content downloading services
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="relative z-10">
+                  <CardContent className="relative z-10 p-4 md:p-6 pt-0">
                     <div className="flex items-center text-sm text-white/80">
                       <CheckCircle className="w-4 h-4 mr-2" />
                       20+ Platforms
@@ -312,24 +312,23 @@ export default function HomePage() {
                 </Card>
               </motion.div>
 
-              {/* Payment Gateway Card */}
               <motion.div
-                whileHover={{ y: -10, scale: 1.02 }}
+                whileHover={{ y: -5, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
                 className="group"
               >
                 <Card className="h-full border-0 shadow-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white overflow-hidden relative">
                   <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
-                  <CardHeader className="relative z-10">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
-                      <Shield className="h-6 w-6" />
+                  <CardHeader className="relative z-10 p-4 md:p-6">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-xl flex items-center justify-center mb-3 md:mb-4">
+                      <Shield className="h-5 w-5 md:h-6 md:w-6" />
                     </div>
-                    <CardTitle className="text-2xl font-bold">Payment</CardTitle>
-                    <CardDescription className="text-white/90">
+                    <CardTitle className="text-xl md:text-2xl font-bold">Payment</CardTitle>
+                    <CardDescription className="text-white/90 text-sm md:text-base">
                       Secure payment processing and gateway services
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="relative z-10">
+                  <CardContent className="relative z-10 p-4 md:p-6 pt-0">
                     <div className="flex items-center text-sm text-white/80">
                       <CheckCircle className="w-4 h-4 mr-2" />
                       Bank Transfer
@@ -338,24 +337,23 @@ export default function HomePage() {
                 </Card>
               </motion.div>
 
-              {/* AI Card */}
               <motion.div
-                whileHover={{ y: -10, scale: 1.02 }}
+                whileHover={{ y: -5, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
                 className="group"
               >
                 <Card className="h-full border-0 shadow-xl bg-gradient-to-br from-blue-500 to-cyan-600 text-white overflow-hidden relative">
                   <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
-                  <CardHeader className="relative z-10">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
-                      <Sparkles className="h-6 w-6" />
+                  <CardHeader className="relative z-10 p-4 md:p-6">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-xl flex items-center justify-center mb-3 md:mb-4">
+                      <Sparkles className="h-5 w-5 md:h-6 md:w-6" />
                     </div>
-                    <CardTitle className="text-2xl font-bold">AI Services</CardTitle>
-                    <CardDescription className="text-white/90">
+                    <CardTitle className="text-xl md:text-2xl font-bold">AI Services</CardTitle>
+                    <CardDescription className="text-white/90 text-sm md:text-base">
                       Advanced AI-powered tools and automation
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="relative z-10">
+                  <CardContent className="relative z-10 p-4 md:p-6 pt-0">
                     <div className="flex items-center text-sm text-white/80">
                       <CheckCircle className="w-4 h-4 mr-2" />
                       10+ AI Tools
@@ -367,11 +365,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* JKT48 APIs - Enhanced Grid */}
-        <section className="w-full py-24 bg-white dark:bg-slate-900">
+        {/* JKT48 APIs - Mobile responsive grid */}
+        <section className="w-full py-16 md:py-24 bg-white dark:bg-slate-900">
           <div className="container px-4 md:px-6">
             <motion.div 
-              className="text-center mb-16"
+              className="text-center mb-12 md:mb-16"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -380,15 +378,15 @@ export default function HomePage() {
                 <Users className="w-4 h-4 mr-2" />
                 JKT48 Specialized
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-100 mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 dark:text-slate-100 mb-6">
                 JKT48 API Collection
               </h2>
-              <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto px-4">
                 Comprehensive APIs designed specifically for JKT48 fans and developers
               </p>
             </motion.div>
 
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {
                   icon: Cloud,
@@ -443,22 +441,22 @@ export default function HomePage() {
                   className="group"
                 >
                   <Card className="h-full border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                    <CardHeader>
-                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${api.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                        <api.icon className="h-6 w-6 text-white" />
+                    <CardHeader className="p-4 md:p-6">
+                      <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-r ${api.gradient} flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                        <api.icon className="h-5 w-5 md:h-6 md:w-6 text-white" />
                       </div>
-                      <CardTitle className="text-xl font-bold text-slate-800 dark:text-slate-100">
+                      <CardTitle className="text-lg md:text-xl font-bold text-slate-800 dark:text-slate-100">
                         {api.title}
                       </CardTitle>
-                      <CardDescription className="text-slate-600 dark:text-slate-400">
+                      <CardDescription className="text-slate-600 dark:text-slate-400 text-sm md:text-base">
                         {api.description}
                       </CardDescription>
                     </CardHeader>
-                    <CardContent className="pt-0">
+                    <CardContent className="pt-0 p-4 md:p-6">
                       <Link href={api.link}>
                         <Button 
                           variant="ghost" 
-                          className="w-full justify-between group-hover:bg-slate-100 dark:group-hover:bg-slate-800 transition-colors duration-300"
+                          className="w-full justify-between group-hover:bg-slate-100 dark:group-hover:bg-slate-800 transition-colors duration-300 text-sm md:text-base"
                         >
                           View Documentation
                           <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -472,32 +470,32 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Code Example Section - Enhanced */}
-        <section className="w-full py-24 bg-slate-50 dark:bg-slate-800">
+        {/* Code Example Section - Mobile optimized */}
+        <section className="w-full py-16 md:py-24 bg-slate-50 dark:bg-slate-800">
           <div className="container px-4 md:px-6">
-            <div className="grid gap-12 lg:grid-cols-2 items-center">
+            <div className="grid gap-8 lg:gap-12 lg:grid-cols-2 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="space-y-6"
+                className="space-y-6 order-2 lg:order-1"
               >
                 <Badge className="bg-blue-100 text-blue-800 border-blue-200">
                   <Code className="w-4 h-4 mr-2" />
                   Developer Experience
                 </Badge>
                 
-                <h2 className="text-4xl font-bold text-slate-800 dark:text-slate-100">
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-slate-100">
                   Built for Developers
                 </h2>
                 
-                <p className="text-lg text-slate-600 dark:text-slate-400">
+                <p className="text-base md:text-lg text-slate-600 dark:text-slate-400">
                   Our APIs are designed with simplicity and power in mind. Clean responses, 
                   comprehensive documentation, and reliable uptime.
                 </p>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
                     { icon: Zap, label: "Fast Response", desc: "< 100ms avg" },
                     { icon: Shield, label: "Secure", desc: "API Key Auth" },
@@ -509,15 +507,15 @@ export default function HomePage() {
                         <feature.icon className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                       </div>
                       <div>
-                        <div className="font-semibold text-slate-800 dark:text-slate-100">{feature.label}</div>
-                        <div className="text-sm text-slate-500 dark:text-slate-400">{feature.desc}</div>
+                        <div className="font-semibold text-slate-800 dark:text-slate-100 text-sm md:text-base">{feature.label}</div>
+                        <div className="text-xs md:text-sm text-slate-500 dark:text-slate-400">{feature.desc}</div>
                       </div>
                     </div>
                   ))}
                 </div>
 
                 <Link href="/docs">
-                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto">
                     Explore All APIs
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -529,16 +527,16 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="relative"
+                className="relative order-1 lg:order-2"
               >
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl"></div>
                 <Card className="relative border-0 shadow-2xl overflow-hidden">
-                  <CardHeader className="bg-gradient-to-r from-slate-800 to-slate-900 text-white">
+                  <CardHeader className="bg-gradient-to-r from-slate-800 to-slate-900 text-white p-3 md:p-6">
                     <div className="flex items-center justify-between">
                       <div className="flex space-x-2">
-                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                        <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-red-500"></div>
+                        <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-yellow-500"></div>
+                        <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-500"></div>
                       </div>
                       <Badge variant="secondary" className="text-xs">
                         Live Example
@@ -546,17 +544,21 @@ export default function HomePage() {
                     </div>
                   </CardHeader>
                   <CardContent className="p-0">
-                    <div className="bg-slate-900 text-green-400 p-6 font-mono text-sm overflow-x-auto">
+                    <div className="bg-slate-900 text-green-400 p-3 md:p-6 font-mono text-xs md:text-sm overflow-x-auto">
                       <div className="text-slate-400 mb-2">// GET Request</div>
                       <div className="text-blue-400">curl</div>
-                      <div className="ml-4 text-white">-X GET "https://api.jkt48connect.my.id/api/live"</div>
-                      <div className="ml-4 text-white">-H "Authorization: Bearer YOUR_API_KEY"</div>
+                      <div className="ml-2 md:ml-4 text-white break-all">
+                        -X GET "https://api.jkt48connect.my.id/api/live"
+                      </div>
+                      <div className="ml-2 md:ml-4 text-white break-all">
+                        -H "Authorization: Bearer YOUR_API_KEY"
+                      </div>
                       
                       <div className="text-slate-400 mt-4 mb-2">// Response</div>
                       <div className="text-yellow-400">{`{
   "status": "success",
   "data": [`}</div>
-                      <div className="ml-4 text-white">{`{
+                      <div className="ml-2 md:ml-4 text-white">{`{
     "name": "Fritzy",
     "room_id": 510011,
     "is_live": true,
@@ -573,8 +575,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Enhanced CTA Section */}
-        <section className="w-full py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
+        {/* Enhanced CTA Section - Mobile optimized */}
+        <section className="w-full py-16 md:py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           
           {/* Background Pattern */}
@@ -592,42 +594,42 @@ export default function HomePage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full backdrop-blur-sm mb-8">
-                <Star className="w-5 h-5 mr-2" />
-                <span className="font-medium">Ready to Start Building?</span>
+              <div className="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white/20 rounded-full backdrop-blur-sm mb-6 md:mb-8">
+                <Star className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+                <span className="font-medium text-sm md:text-base">Ready to Start Building?</span>
               </div>
 
-              <h2 className="text-5xl md:text-6xl font-black mb-6">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 md:mb-6">
                 Get Your API Key
               </h2>
               
-              <p className="text-xl md:text-2xl mb-12 opacity-90 max-w-2xl mx-auto">
+              <p className="text-lg sm:text-xl md:text-2xl mb-8 md:mb-12 opacity-90 max-w-2xl mx-auto px-4">
                 Join thousands of developers building amazing applications with our robust API platform
               </p>
 
               <ApiKeyGenerationForm />
 
-              <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+              <div className="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-3xl mx-auto">
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Zap className="h-6 w-6" />
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+                    <Zap className="h-5 w-5 md:h-6 md:w-6" />
                   </div>
-                  <h3 className="font-semibold mb-2">Instant Setup</h3>
-                  <p className="text-sm opacity-80">Get started in seconds with your API key</p>
+                  <h3 className="font-semibold mb-2 text-sm md:text-base">Instant Setup</h3>
+                  <p className="text-xs md:text-sm opacity-80">Get started in seconds with your API key</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Shield className="h-6 w-6" />
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+                    <Shield className="h-5 w-5 md:h-6 md:w-6" />
                   </div>
-                  <h3 className="font-semibold mb-2">Secure & Reliable</h3>
-                  <p className="text-sm opacity-80">Enterprise-grade security and uptime</p>
+                  <h3 className="font-semibold mb-2 text-sm md:text-base">Secure & Reliable</h3>
+                  <p className="text-xs md:text-sm opacity-80">Enterprise-grade security and uptime</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Users className="h-6 w-6" />
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+                    <Users className="h-5 w-5 md:h-6 md:w-6" />
                   </div>
-                  <h3 className="font-semibold mb-2">24/7 Support</h3>
-                  <p className="text-sm opacity-80">Expert support when you need it</p>
+                  <h3 className="font-semibold mb-2 text-sm md:text-base">24/7 Support</h3>
+                  <p className="text-xs md:text-sm opacity-80">Expert support when you need it</p>
                 </div>
               </div>
             </motion.div>
@@ -638,7 +640,7 @@ export default function HomePage() {
   )
 }
 
-// Enhanced API Key Generation Form
+// Enhanced API Key Generation Form - Mobile Optimized
 function ApiKeyGenerationForm() {
   const [isLoading, setIsLoading] = useState(false)
 
@@ -648,7 +650,7 @@ function ApiKeyGenerationForm() {
     // Add some loading delay for better UX
     await new Promise(resolve => setTimeout(resolve, 1000))
     
-    const waText = encodeURIComponent("Hi! I'd like to generate an API key for the JKT48 API platform. Could you please help me get started?")
+    const waText = encodeURIComponent(".buyapikey")
     const waLink = `https://wa.me/6285198360849?text=${waText}`
   
     window.open(waLink, '_blank')
@@ -657,19 +659,19 @@ function ApiKeyGenerationForm() {
 
   return (
     <motion.div 
-      className="max-w-md mx-auto"
+      className="max-w-md mx-auto px-4"
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
     >
       <Card className="border-0 bg-white/10 backdrop-blur-md shadow-2xl">
-        <CardContent className="p-6">
-          <div className="text-center mb-6">
-            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Rocket className="h-8 w-8 text-white" />
+        <CardContent className="p-4 md:p-6">
+          <div className="text-center mb-4 md:mb-6">
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <Rocket className="h-6 w-6 md:h-8 md:w-8 text-white" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Get Started Today</h3>
+            <h3 className="text-lg md:text-xl font-bold text-white mb-2">Get Started Today</h3>
             <p className="text-white/80 text-sm">
               Contact us via WhatsApp to get your API key instantly
             </p>
@@ -679,23 +681,23 @@ function ApiKeyGenerationForm() {
             onClick={handleGetApiKey}
             disabled={isLoading}
             size="lg"
-            className="w-full bg-white text-blue-600 hover:bg-white/90 font-semibold text-lg py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+            className="w-full bg-white text-blue-600 hover:bg-white/90 font-semibold text-base md:text-lg py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
           >
             {isLoading ? (
               <>
-                <div className="w-5 h-5 border-2 border-blue-600/20 border-t-blue-600 rounded-full animate-spin mr-2" />
+                <div className="w-4 h-4 md:w-5 md:h-5 border-2 border-blue-600/20 border-t-blue-600 rounded-full animate-spin mr-2" />
                 Connecting...
               </>
             ) : (
               <>
                 <span className="mr-2">💬</span>
                 Get API Key via WhatsApp
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </>
             )}
           </Button>
 
-          <div className="mt-4 text-center">
+          <div className="mt-3 md:mt-4 text-center">
             <p className="text-xs text-white/60">
               Free tier available • No credit card required
             </p>
@@ -703,20 +705,20 @@ function ApiKeyGenerationForm() {
         </CardContent>
       </Card>
 
-      {/* Additional Info Cards */}
-      <div className="mt-6 grid grid-cols-2 gap-3">
+      {/* Additional Info Cards - Mobile responsive */}
+      <div className="mt-4 md:mt-6 grid grid-cols-2 gap-2 md:gap-3">
         <Card className="border-0 bg-white/5 backdrop-blur-sm">
-          <CardContent className="p-4 text-center">
-            <CheckCircle className="h-5 w-5 text-green-400 mx-auto mb-2" />
-            <p className="text-sm text-white font-medium">Free Tier</p>
+          <CardContent className="p-3 md:p-4 text-center">
+            <CheckCircle className="h-4 w-4 md:h-5 md:w-5 text-green-400 mx-auto mb-1 md:mb-2" />
+            <p className="text-xs md:text-sm text-white font-medium">Free Tier</p>
             <p className="text-xs text-white/60">1000 calls/month</p>
           </CardContent>
         </Card>
         
         <Card className="border-0 bg-white/5 backdrop-blur-sm">
-          <CardContent className="p-4 text-center">
-            <Zap className="h-5 w-5 text-yellow-400 mx-auto mb-2" />
-            <p className="text-sm text-white font-medium">Instant Setup</p>
+          <CardContent className="p-3 md:p-4 text-center">
+            <Zap className="h-4 w-4 md:h-5 md:w-5 text-yellow-400 mx-auto mb-1 md:mb-2" />
+            <p className="text-xs md:text-sm text-white font-medium">Instant Setup</p>
             <p className="text-xs text-white/60">Ready in minutes</p>
           </CardContent>
         </Card>
