@@ -306,69 +306,24 @@ export default function DocsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          {/* Enhanced Header Section */}
-          <div className="relative">
-            {/* Background decoration */}
-            <div className="absolute inset-0 -z-10">
-              <div className="absolute top-0 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
-              <div className="absolute -top-24 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl"></div>
-            </div>
-            
-            <div className="text-center max-w-4xl mx-auto space-y-8">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl mb-6 border border-primary/10"
-              >
-                <Cloud className="h-8 w-8 text-primary mr-3" />
-                <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                  API v2.0
-                </Badge>
-              </motion.div>
-              
-              <motion.h1 
-                className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/80 to-primary/60"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                API Documentation
-              </motion.h1>
-              
-              <motion.p 
-                className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                Powerful, reliable, and easy-to-use APIs designed to supercharge your applications with 
-                <span className="text-primary font-semibold"> JKT48 v2.0 features</span> and beyond.
-              </motion.p>
-
-              {/* Quick stats */}
-              <motion.div 
-                className="flex flex-wrap justify-center gap-6 pt-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                <div className="flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-full border">
-                  <Code2 className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-medium">{apis.length} APIs Available</span>
-                </div>
-                <div className="flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-full border">
-                  <Sparkles className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-medium">Always Updated</span>
-                </div>
-                <div className="flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-full border">
-                  <BookOpen className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-medium">Well Documented</span>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-
+          {/* Header Section */}
+        <div className="space-y-4 text-center max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center justify-center p-2 bg-primary/10 rounded-full mb-4"
+          >
+            <Cloud className="h-6 w-6 text-primary" />
+          </motion.div>
+          <h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
+            API Documentation
+          </h1>
+          <p className="text-xl text-muted-foreground mt-4 max-w-2xl mx-auto">
+            Explore our collection of powerful and easy-to-use APIs designed to enhance your applications with JKT48 v2.0 features.
+          </p>
+        </div>
+          
           {/* Enhanced Search and Filter Section */}
           <motion.div 
             className="space-y-6"
