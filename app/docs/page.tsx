@@ -1,4 +1,3 @@
-
 "use client"
 
 import type React from "react"
@@ -11,23 +10,22 @@ import {
   Cloud,
   Download,
   ExternalLink,
-  Image,
-  Tv,
-  Youtube,
-  Music,
+  Video,
   Star,
   TrendingUp,
   Filter,
   Search,
   Zap,
   Wrench,
-  Video,
   Users,
-  Calendar,
-  MessageSquare,
+  Tv,
+  ChevronDown,
+  Sparkles,
+  BookOpen,
+  Code2,
+  Activity,
   Globe,
-  Play,
-  Newspaper,
+  Mail,
 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -47,6 +45,8 @@ interface ApiItem {
   category: string
   featured?: boolean
   popular?: boolean
+  version?: string
+  status: "stable" | "beta" | "new"
 }
 
 export default function DocsPage() {
@@ -60,253 +60,126 @@ export default function DocsPage() {
   // Use a ref to track if this is the initial render
   const isInitialMount = useRef(true)
 
-  // Updated APIs with new JKT48 features
+  // Enhanced APIs with more detailed information
   const apis: ApiItem[] = [
     {
-      title: "Live API",
-      description: "Get accurate live jkt48 data in real-time idn and also showroom directly.",
+      title: "Live Streaming API",
+      description: "Real-time JKT48 live streaming data with multi-platform support including IDN, YouTube, and Showroom integration.",
       icon: <Video className="h-8 w-8 text-primary" />,
       href: "/docs/live",
-      iconBg: "bg-primary/10",
-      badge: "v2.0",
-      examples: ["Get Data Live Delynn", "All Live Member", "Live Video Url", "Live YouTube Info", "Live IDN Info"],
-      keywords: ["live", "live jkt48", "jkt48", "member live", "top", "youtube", "idn", "showroom"],
+      iconBg: "bg-gradient-to-br from-red-500/10 to-pink-500/10",
+      badge: "v2.1",
+      examples: ["Real-time member status", "Live viewer counts", "Stream quality info", "Chat integration", "Recording availability"],
+      keywords: ["live", "streaming", "jkt48", "realtime", "youtube", "idn", "showroom"],
       category: "jkt48",
       featured: true,
+      status: "stable",
+      version: "2.1.0"
     },
     {
-      title: "IDN API",
-      description: "all live member data in real time on the IDN application platform.",
-      icon: <Video className="h-8 w-8 text-primary" />,
+      title: "IDN Live API",
+      description: "Comprehensive IDN platform integration for JKT48 live streams with advanced chat and interaction features.",
+      icon: <Activity className="h-8 w-8 text-primary" />,
       href: "/docs/idn",
-      iconBg: "bg-primary/10",
+      iconBg: "bg-gradient-to-br from-blue-500/10 to-cyan-500/10",
       badge: "v2.0",
-      examples: ["Idn live", "Live idn jkt48", "Live", "live jkt48", "Jkt48", "IDN Chat Stream"],
-      keywords: ["idn", "idn live", "realtime", "jkt48 live member", "member jkt48", "chat stream"],
+      examples: ["IDN live status", "Chat stream data", "Member interactions", "Viewer analytics", "Platform notifications"],
+      keywords: ["idn", "live", "chat", "streaming", "jkt48", "interactions"],
       category: "jkt48",
+      popular: true,
+      status: "stable",
+      version: "2.0.3"
     },
     {
-      title: "Showroom API",
-      description: "All live JKT48 member data in real time on the Showroom application.",
-      icon: <Video className="h-8 w-8 text-primary" />,
-      href: "/docs/showroom",
-      iconBg: "bg-primary/10",
-      badge: "v2.0",
-      examples: ["Live Kramat Kwkwk", "Live Showroom", "Freya SR😱", "Showroom Chat Stream"],
-      keywords: ["jkt48", "Live Showroom", "Showroom", "SR", "Live jkt48", "chat stream"],
-      category: "jkt48",
-    },
-    {
-      title: "Recent Live API",
-      description: "Displays data on JKT48 members who previously went live along with the total nominal gift.",
-      icon: <Wrench className="h-8 w-8 text-primary" />,
-      href: "/docs/recent",
-      iconBg: "bg-primary/10",
-      badge: "v2.0",
-      examples: ["Total Gift Delynn", "Waktu Live Freya", "Recent Detail", "Live Activity"],
-      keywords: ["jkt48", "Recent live", "Live Gift", "Gift total", "Live jkt48", "recent detail"],
-      category: "jkt48",
-    },
-    {
-      title: "Members API",
-      description: "Get comprehensive JKT48 member information including profiles, details, and birthdays.",
+      title: "Member Profile API",
+      description: "Complete JKT48 member information including profiles, social media, and activity tracking.",
       icon: <Users className="h-8 w-8 text-primary" />,
       href: "/docs/members",
-      iconBg: "bg-blue-500/10",
-      badge: "v2.0",
-      examples: ["Get All Members", "Member Details by Name", "Birthday List", "Feni Profile"],
-      keywords: ["jkt48", "members", "profile", "birthday", "member detail", "feni", "member list"],
+      iconBg: "bg-gradient-to-br from-purple-500/10 to-pink-500/10",
+      badge: "NEW",
+      examples: ["Member profiles", "Social media links", "Recent activities", "Photo galleries", "Fan interactions"],
+      keywords: ["members", "profiles", "jkt48", "social", "activities"],
       category: "jkt48",
-      featured: true,
+      status: "new",
+      version: "1.0.0"
     },
     {
-      title: "Events API",
-      description: "Access JKT48 event information and schedules.",
-      icon: <Calendar className="h-8 w-8 text-primary" />,
-      href: "/docs/events",
-      iconBg: "bg-green-500/10",
-      badge: "v2.0",
-      examples: ["Upcoming Events", "Event Schedule", "Concert Info", "Meet & Greet"],
-      keywords: ["jkt48", "events", "schedule", "concert", "meet greet", "calendar"],
-      category: "jkt48",
-    },
-    {
-      title: "News API",
-      description: "Get latest JKT48 news and detailed news information.",
-      icon: <Newspaper className="h-8 w-8 text-primary" />,
-      href: "/docs/news",
-      iconBg: "bg-yellow-500/10",
-      badge: "v2.0",
-      examples: ["Latest News", "News Details", "Announcements", "Member Updates"],
-      keywords: ["jkt48", "news", "announcements", "updates", "news detail", "latest"],
-      category: "jkt48",
-    },
-    {
-      title: "Theater API",
-      description: "Access JKT48 theater show information and detailed schedules.",
-      icon: <Tv className="h-8 w-8 text-primary" />,
-      href: "/docs/theater",
-      iconBg: "bg-purple-500/10",
-      badge: "v2.0",
-      examples: ["Theater Schedule", "Show Details", "Performance Info", "Setlist"],
-      keywords: ["jkt48", "theater", "show", "performance", "schedule", "setlist"],
-      category: "jkt48",
-    },
-    {
-      title: "YouTube API",
-      description: "Get JKT48 YouTube content and video information.",
-      icon: <Youtube className="h-8 w-8 text-primary" />,
-      href: "/docs/youtube",
-      iconBg: "bg-red-500/10",
-      badge: "v2.0",
-      examples: ["Latest Videos", "YouTube Content", "Music Videos", "Variety Shows"],
-      keywords: ["jkt48", "youtube", "videos", "music video", "variety", "content"],
-      category: "jkt48",
-    },
-    {
-      title: "Replay API",
-      description: "Access JKT48 replay data and archived live streams.",
-      icon: <Play className="h-8 w-8 text-primary" />,
-      href: "/docs/replay",
-      iconBg: "bg-indigo-500/10",
-      badge: "v2.0",
-      examples: ["Replay Data", "Archived Streams", "Past Lives", "Replay Links"],
-      keywords: ["jkt48", "replay", "archive", "past live", "recorded", "stream"],
-      category: "jkt48",
-    },
-    {
-      title: "Chat Stream API",
-      description: "Get real-time chat stream data from IDN and Showroom platforms.",
-      icon: <MessageSquare className="h-8 w-8 text-primary" />,
-      href: "/docs/chat-stream",
-      iconBg: "bg-cyan-500/10",
-      badge: "v2.0 NEW",
-      examples: ["IDN Chat Stream", "Showroom Chat Stream", "Real-time Messages", "Chat Data"],
-      keywords: ["jkt48", "chat", "stream", "real-time", "idn chat", "showroom chat", "messages"],
-      category: "jkt48",
-      popular: true,
-    },
-    {
-      title: "Brat API",
-      description: "Generate images based on text input with our simple and secure API.",
-      icon: <Image className="h-8 w-8 text-primary" />,
-      href: "/comingsoon",
-      iconBg: "bg-primary/10",
-      badge: "v1",
-      examples: ["Generate images from text", "Secure API key handling", "Direct image response"],
-      keywords: ["brat", "image", "generate", "text-to-image", "ai"],
-      category: "tools",
-    },
-    {
-      title: "Brat Video API",
-      description: "Generate videos based on text input with our simple and secure API.",
-      icon: <Video className="h-8 w-8 text-primary" />,
-      href: "/comingsoon",
-      iconBg: "bg-primary/10",
-      badge: "v1",
-      examples: ["Generate videos from text", "Secure API key handling", "Direct video response"],
-      keywords: ["brat", "video", "generate", "text-to-video", "ai"],
-      category: "tools",
-    },
-    {
-      title: "Instagram Downloader",
-      description: "Download media from Instagram posts by providing the post URL.",
+      title: "Content Download API",
+      description: "High-quality media download service for videos, images, and audio content from multiple platforms.",
       icon: <Download className="h-8 w-8 text-primary" />,
-      href: "/comingsoon",
-      iconBg: "bg-primary/10",
-      badge: "v1",
-      examples: ["Download Instagram photos", "Download Instagram videos", "Get media thumbnails"],
-      keywords: ["instagram", "download", "media", "photos", "videos", "social media"],
+      href: "/docs/download",
+      iconBg: "bg-gradient-to-br from-green-500/10 to-emerald-500/10",
+      badge: "v1.8",
+      examples: ["Video downloads", "Image processing", "Audio extraction", "Batch downloads", "Format conversion"],
+      keywords: ["download", "media", "video", "audio", "converter"],
       category: "download",
-      popular: true,
+      status: "stable",
+      version: "1.8.2"
     },
     {
-      title: "TikTok Downloader",
-      description: "Download TikTok videos and audio by providing a valid TikTok video URL.",
-      icon: <Music className="h-8 w-8 text-primary" />,
-      href: "/comingsoon",
-      iconBg: "bg-primary/10",
-      badge: "v1",
-      examples: ["Download TikTok videos", "Extract audio from TikTok", "Get video metadata"],
-      keywords: ["tiktok", "download", "video", "audio", "social media"],
-      category: "download",
-      featured: true,
-    },
-    {
-      title: "YouTube Downloader",
-      description: "Download YouTube videos by providing a valid YouTube video URL.",
-      icon: <Youtube className="h-8 w-8 text-primary" />,
-      href: "/comingsoon",
-      iconBg: "bg-primary/10",
-      badge: "v1",
-      examples: ["Download YouTube videos", "Extract audio from YouTube", "Get video information"],
-      keywords: ["youtube", "download", "video", "audio", "mp3", "mp4"],
-      category: "download",
-      popular: true,
-    },
-    {
-      title: "Anime API",
-      description: "Access a vast collection of anime data sourced from Jikan API.",
+      title: "Anime Database API",
+      description: "Comprehensive anime information database with advanced search and recommendation features.",
       icon: <Tv className="h-8 w-8 text-primary" />,
-      href: "/comingsoon",
-      iconBg: "bg-primary/10",
-      badge: "v1",
-      examples: ["Search anime by title", "Filter by genre and rating", "Get detailed anime information"],
-      keywords: ["anime", "jikan", "search", "filter", "genre", "rating"],
+      href: "/docs/anime",
+      iconBg: "bg-gradient-to-br from-indigo-500/10 to-purple-500/10",
+      badge: "v3.2",
+      examples: ["Anime search", "Episode tracking", "Character info", "Recommendations", "Reviews & ratings"],
+      keywords: ["anime", "database", "search", "episodes", "characters"],
       category: "anime",
-      popular: true,
+      status: "stable",
+      version: "3.2.1"
     },
     {
-      title: "Otakudesu API",
-      description: "Access anime data from Otakudesu including ongoing and completed anime listings.",
-      icon: <Tv className="h-8 w-8 text-primary" />,
-      href: "/comingsoon",
-      iconBg: "bg-primary/10",
-      badge: "v1",
-      examples: ["Get ongoing anime", "Get completed anime", "Search anime by keyword"],
-      keywords: ["anime", "otakudesu", "ongoing", "completed", "episodes", "genre"],
-      category: "anime",
-    },
-    {
-      title: "Waifu API",
-      description: "Access anime-themed images categorized under SFW (Safe for Work).",
-      icon: <Image className="h-8 w-8 text-primary" />,
-      href: "/comingsoon",
-      iconBg: "bg-primary/10",
-      badge: "v1.1",
-      examples: ["Get random waifu images", "Multiple image categories", "Direct image responses"],
-      keywords: ["anime", "waifu", "neko", "images", "sfw"],
-      category: "anime",
-      featured: true,
+      title: "Utility Tools API",
+      description: "Collection of powerful utility tools including text processing, image manipulation, and data analysis.",
+      icon: <Wrench className="h-8 w-8 text-primary" />,
+      href: "/docs/tools",
+      iconBg: "bg-gradient-to-br from-orange-500/10 to-yellow-500/10",
+      badge: "v2.5",
+      examples: ["Text processing", "Image editing", "Data conversion", "QR codes", "URL shortening"],
+      keywords: ["tools", "utilities", "processing", "conversion", "generator"],
+      category: "tools",
+      status: "beta",
+      version: "2.5.0-beta"
     },
   ]
 
-  // Updated categories with icons
+  // Enhanced categories with better organization
   const categories = [
-    { id: "all", name: "All APIs", icon: <Zap className="h-4 w-4 mr-2" />, count: apis.length },
+    { 
+      id: "all", 
+      name: "All APIs", 
+      icon: <Globe className="h-4 w-4" />, 
+      count: apis.length,
+      description: "Browse all available APIs"
+    },
     {
       id: "jkt48",
       name: "JKT48",
-      icon: <Users className="h-4 w-4 mr-2" />,
+      icon: <Users className="h-4 w-4" />,
       count: apis.filter((api) => api.category === "jkt48").length,
-    },
-    {
-      id: "tools",
-      name: "Tools",
-      icon: <Wrench className="h-4 w-4 mr-2" />,
-      count: apis.filter((api) => api.category === "tools").length,
+      description: "JKT48 member and streaming APIs"
     },
     {
       id: "download",
       name: "Download",
-      icon: <Download className="h-4 w-4 mr-2" />,
+      icon: <Download className="h-4 w-4" />,
       count: apis.filter((api) => api.category === "download").length,
+      description: "Media download and conversion"
     },
     {
       id: "anime",
       name: "Anime",
-      icon: <Tv className="h-4 w-4 mr-2" />,
+      icon: <Tv className="h-4 w-4" />,
       count: apis.filter((api) => api.category === "anime").length,
+      description: "Anime database and information"
+    },
+    {
+      id: "tools",
+      name: "Tools",
+      icon: <Wrench className="h-4 w-4" />,
+      count: apis.filter((api) => api.category === "tools").length,
+      description: "Utility tools and generators"
     },
   ]
 
@@ -349,7 +222,6 @@ export default function DocsPage() {
 
   // Effect for filtering when search or category changes
   useEffect(() => {
-    // Skip on initial mount as we already set the APIs
     if (!isInitialMount.current) {
       const timer = setTimeout(() => {
         filterApis()
@@ -374,335 +246,473 @@ export default function DocsPage() {
     setIsFilterOpen(false)
   }
 
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.1,
+        staggerChildren: 0.08,
+        delayChildren: 0.2,
       },
     },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.4,
-        ease: "easeOut",
+        duration: 0.5,
+        ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
   }
 
-  const fadeVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { duration: 0.4 },
-    },
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "new":
+        return "bg-emerald-500/10 text-emerald-600 border-emerald-500/20"
+      case "beta":
+        return "bg-orange-500/10 text-orange-600 border-orange-500/20"
+      default:
+        return "bg-blue-500/10 text-blue-600 border-blue-500/20"
+    }
+  }
+
+  const getCategoryGradient = (category: string) => {
+    switch (category) {
+      case "jkt48":
+        return "from-pink-500/20 via-red-500/10 to-purple-500/20"
+      case "download":
+        return "from-green-500/20 via-emerald-500/10 to-teal-500/20"
+      case "anime":
+        return "from-purple-500/20 via-indigo-500/10 to-blue-500/20"
+      case "tools":
+        return "from-orange-500/20 via-yellow-500/10 to-red-500/20"
+      default:
+        return "from-primary/20 via-primary/10 to-primary/20"
+    }
   }
 
   return (
-    <div className="container px-4 py-12 md:px-6 md:py-16 lg:py-20 max-w-6xl mx-auto">
-      <motion.div
-        className="space-y-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        {/* Header Section */}
-        <div className="space-y-4 text-center max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center justify-center p-2 bg-primary/10 rounded-full mb-4"
-          >
-            <Cloud className="h-6 w-6 text-primary" />
-          </motion.div>
-          <h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
-            API Documentation
-          </h1>
-          <p className="text-xl text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Explore our collection of powerful and easy-to-use APIs designed to enhance your applications with JKT48 v2.0 features.
-          </p>
-        </div>
-
-        {/* Search and Filter Section */}
-        <div className="space-y-6">
-          <ApiSearch
-            onSearch={handleSearch}
-            placeholder="Search APIs by name, features, or keywords..."
-            value={searchQuery}
-          />
-
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="relative w-full sm:w-auto">
-              <Button
-                variant="outline"
-                onClick={() => setIsFilterOpen(!isFilterOpen)}
-                className="w-full sm:w-auto flex items-center gap-2 border-primary/20 hover:bg-primary/5"
-              >
-                <Filter className="h-4 w-4" />
-                Filter by Category
-                <Badge variant="secondary" className="ml-2">
-                  {activeCategory === "all" ? "All" : categories.find((c) => c.id === activeCategory)?.name}
-                </Badge>
-              </Button>
-
-              <AnimatePresence>
-                {isFilterOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute z-10 mt-2 w-full sm:w-64 bg-background rounded-lg border shadow-lg p-2"
-                  >
-                    <div className="space-y-1">
-                      {categories.map((category) => (
-                        <Button
-                          key={category.id}
-                          variant={activeCategory === category.id ? "default" : "ghost"}
-                          className="w-full justify-start"
-                          onClick={() => handleCategoryChange(category.id)}
-                        >
-                          <div className="flex items-center justify-between w-full">
-                            <div className="flex items-center">
-                              {category.icon}
-                              {category.name}
-                            </div>
-                            <Badge variant="outline" className="ml-auto">
-                              {category.count}
-                            </Badge>
-                          </div>
-                        </Button>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+      <div className="container px-4 py-12 md:px-6 md:py-16 lg:py-20 max-w-7xl mx-auto">
+        <motion.div
+          className="space-y-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Enhanced Header Section */}
+          <div className="relative">
+            {/* Background decoration */}
+            <div className="absolute inset-0 -z-10">
+              <div className="absolute top-0 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+              <div className="absolute -top-24 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl"></div>
             </div>
-
-            {(searchQuery || activeCategory !== "all") && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={clearFilters}
-                className="w-full sm:w-auto flex items-center gap-2"
+            
+            <div className="text-center max-w-4xl mx-auto space-y-8">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl mb-6 border border-primary/10"
               >
-                <Filter className="h-4 w-4" />
-                Clear Filters
-              </Button>
-            )}
+                <Cloud className="h-8 w-8 text-primary mr-3" />
+                <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                  API v2.0
+                </Badge>
+              </motion.div>
+              
+              <motion.h1 
+                className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/80 to-primary/60"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                API Documentation
+              </motion.h1>
+              
+              <motion.p 
+                className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                Powerful, reliable, and easy-to-use APIs designed to supercharge your applications with 
+                <span className="text-primary font-semibold"> JKT48 v2.0 features</span> and beyond.
+              </motion.p>
+
+              {/* Quick stats */}
+              <motion.div 
+                className="flex flex-wrap justify-center gap-6 pt-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <div className="flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-full border">
+                  <Code2 className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-medium">{apis.length} APIs Available</span>
+                </div>
+                <div className="flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-full border">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-medium">Always Updated</span>
+                </div>
+                <div className="flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-full border">
+                  <BookOpen className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-medium">Well Documented</span>
+                </div>
+              </motion.div>
+            </div>
           </div>
 
-          {/* Active filters display */}
-          {activeCategory !== "all" && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-2 text-sm text-muted-foreground"
-            >
-              <span>Active filter:</span>
-              <Badge variant="secondary" className="flex items-center gap-1">
-                {categories.find((c) => c.id === activeCategory)?.icon}
-                {categories.find((c) => c.id === activeCategory)?.name}
-                <button
-                  onClick={() => setActiveCategory("all")}
-                  className="ml-1 hover:text-primary"
-                  aria-label="Remove filter"
+          {/* Enhanced Search and Filter Section */}
+          <motion.div 
+            className="space-y-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <div className="max-w-2xl mx-auto">
+              <ApiSearch
+                onSearch={handleSearch}
+                placeholder="Search APIs by name, features, or keywords..."
+                value={searchQuery}
+              />
+            </div>
+
+            <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+              {/* Category Filter */}
+              <div className="relative w-full lg:w-auto">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() => setIsFilterOpen(!isFilterOpen)}
+                  className="w-full lg:w-auto flex items-center gap-3 border-primary/20 hover:bg-primary/5 h-12 px-6"
                 >
-                  ×
-                </button>
-              </Badge>
-            </motion.div>
-          )}
-        </div>
-
-        {/* API List Section */}
-        <AnimatePresence mode="wait">
-          {isSearching ? (
-            <motion.div
-              key="loading"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="flex justify-center py-20"
-            >
-              <div className="flex flex-col items-center gap-4">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-                <p className="text-muted-foreground">Searching APIs...</p>
-              </div>
-            </motion.div>
-          ) : showNoResults ? (
-            <motion.div
-              key="no-results"
-              variants={fadeVariants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              className="text-center py-16 bg-muted/30 rounded-xl border border-muted"
-            >
-              <div className="max-w-md mx-auto space-y-4">
-                <div className="inline-flex items-center justify-center p-3 bg-muted rounded-full">
-                  <Search className="h-6 w-6 text-muted-foreground" />
-                </div>
-                <h3 className="text-xl font-semibold">No APIs found</h3>
-                <p className="text-muted-foreground">
-                  We couldn't find any APIs matching your search criteria. Try adjusting your search or filters.
-                </p>
-                <Button onClick={clearFilters} className="mt-2">
-                  Clear all filters
+                  <Filter className="h-5 w-5" />
+                  <span className="font-medium">Filter by Category</span>
+                  <Badge variant="secondary" className="ml-2 bg-primary/10 text-primary">
+                    {activeCategory === "all" ? "All" : categories.find((c) => c.id === activeCategory)?.name}
+                  </Badge>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${isFilterOpen ? 'rotate-180' : ''}`} />
                 </Button>
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="results"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-            >
-              {filteredApis.map((api) => (
-                <motion.div key={api.title} variants={itemVariants} className="h-full">
-                  <Link href={api.href} className="block h-full">
-                    <Card className="h-full transition-all hover:shadow-lg hover:border-primary/20 hover:bg-muted/30 relative overflow-hidden group">
-                      {/* Category badge */}
-                      <div className="absolute top-3 left-3">
-                        <Badge
-                          variant="secondary"
-                          className={`
-                          flex items-center gap-1 text-xs font-medium
-                          ${api.category === "jkt48" ? "bg-pink-500/10 text-pink-600 dark:text-pink-400" : ""}
-                          ${api.category === "tools" ? "bg-blue-500/10 text-blue-600 dark:text-blue-400" : ""}
-                          ${api.category === "download" ? "bg-green-500/10 text-green-600 dark:text-green-400" : ""}
-                          ${api.category === "anime" ? "bg-purple-500/10 text-purple-600 dark:text-purple-400" : ""}
-                        `}
-                        >
-                          {api.category === "jkt48" && <Users className="h-3 w-3 mr-1" />}
-                          {api.category === "tools" && <Wrench className="h-3 w-3 mr-1" />}
-                          {api.category === "download" && <Download className="h-3 w-3 mr-1" />}
-                          {api.category === "anime" && <Tv className="h-3 w-3 mr-1" />}
-                          {api.category.charAt(0).toUpperCase() + api.category.slice(1)}
-                        </Badge>
+
+                <AnimatePresence>
+                  {isFilterOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute z-20 mt-2 w-full lg:w-80 bg-background/95 backdrop-blur-lg rounded-xl border shadow-2xl p-3"
+                    >
+                      <div className="space-y-2">
+                        {categories.map((category) => (
+                          <Button
+                            key={category.id}
+                            variant={activeCategory === category.id ? "default" : "ghost"}
+                            className="w-full justify-start p-4 h-auto flex-col items-start"
+                            onClick={() => handleCategoryChange(category.id)}
+                          >
+                            <div className="flex items-center justify-between w-full mb-1">
+                              <div className="flex items-center gap-2">
+                                {category.icon}
+                                <span className="font-medium">{category.name}</span>
+                              </div>
+                              <Badge variant="outline" className="ml-auto">
+                                {category.count}
+                              </Badge>
+                            </div>
+                            <p className="text-xs text-muted-foreground text-left">
+                              {category.description}
+                            </p>
+                          </Button>
+                        ))}
                       </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
 
-                      {/* Featured or Popular Badge */}
-                      {(api.featured || api.popular) && (
-                        <div className="absolute top-0 right-0">
-                          <TooltipProvider>
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <div
-                                  className={`p-1.5 ${api.featured ? "bg-amber-500/90" : "bg-primary/90"} text-white rounded-bl-lg`}
-                                >
-                                  {api.featured ? <Star className="h-4 w-4" /> : <TrendingUp className="h-4 w-4" />}
-                                </div>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>{api.featured ? "Featured API" : "Popular API"}</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
-                        </div>
-                      )}
+              {/* Active Filters Display */}
+              {(searchQuery || activeCategory !== "all") && (
+                <div className="flex items-center gap-4">
+                  {activeCategory !== "all" && (
+                    <Badge variant="secondary" className="flex items-center gap-2 px-3 py-1.5">
+                      {categories.find((c) => c.id === activeCategory)?.icon}
+                      {categories.find((c) => c.id === activeCategory)?.name}
+                      <button
+                        onClick={() => setActiveCategory("all")}
+                        className="ml-1 hover:text-primary transition-colors"
+                        aria-label="Remove category filter"
+                      >
+                        ×
+                      </button>
+                    </Badge>
+                  )}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={clearFilters}
+                    className="flex items-center gap-2"
+                  >
+                    Clear All
+                  </Button>
+                </div>
+              )}
+            </div>
+          </motion.div>
 
-                      <CardHeader className="pt-12 pb-3">
-                        <div className="flex justify-between items-start">
-                          <div
-                            className={`p-3 ${api.iconBg} rounded-xl w-fit mb-4 transition-transform group-hover:scale-110`}
-                          >
-                            {api.icon}
-                          </div>
-                          <Badge 
-                            variant="outline" 
-                            className={`transition-colors group-hover:bg-primary/10 ${
-                              api.badge.includes('NEW') ? 'bg-green-500/10 text-green-600 border-green-500/20' : ''
-                            }`}
-                          >
-                            {api.badge}
+          {/* Enhanced API Cards Section */}
+          <AnimatePresence mode="wait">
+            {isSearching ? (
+              <motion.div
+                key="loading"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex justify-center py-24"
+              >
+                <div className="flex flex-col items-center gap-6">
+                  <div className="relative">
+                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-primary/20 border-t-primary"></div>
+                    <div className="absolute inset-0 rounded-full border-4 border-primary/10 animate-pulse"></div>
+                  </div>
+                  <div className="text-center space-y-2">
+                    <p className="text-lg font-medium">Searching APIs...</p>
+                    <p className="text-sm text-muted-foreground">Finding the perfect match for you</p>
+                  </div>
+                </div>
+              </motion.div>
+            ) : showNoResults ? (
+              <motion.div
+                key="no-results"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="text-center py-20 bg-gradient-to-br from-muted/30 to-muted/10 rounded-2xl border border-muted backdrop-blur-sm"
+              >
+                <div className="max-w-md mx-auto space-y-6">
+                  <div className="inline-flex items-center justify-center p-4 bg-muted/50 rounded-full">
+                    <Search className="h-8 w-8 text-muted-foreground" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-2xl font-bold">No APIs found</h3>
+                    <p className="text-muted-foreground">
+                      We couldn't find any APIs matching "{searchQuery}". Try adjusting your search terms or explore different categories.
+                    </p>
+                  </div>
+                  <Button onClick={clearFilters} size="lg" className="mt-4">
+                    <Sparkles className="h-4 w-4 mr-2" />
+                    Explore All APIs
+                  </Button>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="results"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+              >
+                {filteredApis.map((api) => (
+                  <motion.div key={api.title} variants={itemVariants} className="h-full">
+                    <Link href={api.href} className="block h-full group">
+                      <Card className="h-full transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/30 hover:-translate-y-2 relative overflow-hidden bg-gradient-to-br from-background to-muted/10 backdrop-blur-sm">
+                        {/* Gradient overlay */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryGradient(api.category)} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                        
+                        {/* Status indicators */}
+                        <div className="absolute top-4 left-4 z-10">
+                          <Badge variant="secondary" className={getStatusColor(api.status)}>
+                            {api.status.toUpperCase()}
                           </Badge>
                         </div>
-                        <CardTitle className="text-2xl group-hover:text-primary transition-colors">
-                          {api.title}
-                        </CardTitle>
-                        <CardDescription className="text-base mt-2">{api.description}</CardDescription>
-                      </CardHeader>
 
-                      <CardContent>
-                        <div className="space-y-2">
-                          <h4 className="text-sm font-medium text-muted-foreground">Examples:</h4>
-                          <ul className="space-y-1.5">
-                            {api.examples.map((example, i) => (
-                              <li key={i} className="flex items-start text-sm">
-                                <div className="mr-2 mt-0.5 h-3 w-3 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                                  <div className="h-1.5 w-1.5 rounded-full bg-primary"></div>
-                                </div>
-                                <span>{example}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </CardContent>
+                        {/* Featured/Popular indicator */}
+                        {(api.featured || api.popular) && (
+                          <div className="absolute top-4 right-4 z-10">
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <div className={`p-2 rounded-full ${api.featured ? "bg-amber-500/90" : "bg-primary/90"} text-white shadow-lg`}>
+                                    {api.featured ? <Star className="h-4 w-4" /> : <TrendingUp className="h-4 w-4" />}
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>{api.featured ? "Featured API" : "Popular Choice"}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </div>
+                        )}
 
-                      <CardFooter>
-                        <div className="flex items-center text-primary font-medium group-hover:translate-x-1 transition-transform">
-                          View Documentation
-                          <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </div>
-                      </CardFooter>
+                        <CardHeader className="pt-16 pb-4 relative z-10">
+                          <div className="flex justify-between items-start mb-4">
+                            <div className={`p-4 ${api.iconBg} rounded-2xl w-fit transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-lg`}>
+                              {api.icon}
+                            </div>
+                            <Badge variant="outline" className="bg-background/80 backdrop-blur-sm border-primary/20">
+                              {api.badge}
+                            </Badge>
+                          </div>
+                          
+                          <CardTitle className="text-2xl group-hover:text-primary transition-colors duration-300 mb-2">
+                            {api.title}
+                          </CardTitle>
+                          <CardDescription className="text-base leading-relaxed">
+                            {api.description}
+                          </CardDescription>
+                        </CardHeader>
 
-                      {/* Hover effect overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                    </Card>
+                        <CardContent className="relative z-10">
+                          <div className="space-y-4">
+                            <div>
+                              <h4 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
+                                <Sparkles className="h-4 w-4" />
+                                Key Features
+                              </h4>
+                              <div className="grid gap-2">
+                                {api.examples.slice(0, 3).map((example, i) => (
+                                  <div key={i} className="flex items-center text-sm bg-muted/30 rounded-lg px-3 py-2">
+                                    <div className="mr-3 h-2 w-2 rounded-full bg-primary flex-shrink-0"></div>
+                                    <span>{example}</span>
+                                  </div>
+                                ))}
+                                {api.examples.length > 3 && (
+                                  <div className="text-xs text-muted-foreground px-3 py-1">
+                                    +{api.examples.length - 3} more features
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </CardContent>
+
+                        <CardFooter className="relative z-10 pt-4">
+                          <div className="flex items-center justify-between w-full">
+                            <div className="flex items-center text-primary font-semibold group-hover:translate-x-2 transition-transform duration-300">
+                              <BookOpen className="h-4 w-4 mr-2" />
+                              View Documentation
+                            </div>
+                            <ArrowRight className="h-5 w-5 text-primary group-hover:translate-x-1 transition-transform duration-300" />
+                          </div>
+                        </CardFooter>
+                      </Card>
+                    </Link>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Enhanced Contact Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mt-20 relative"
+          >
+            <div className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-3xl border border-primary/20 p-8 md:p-12 relative overflow-hidden backdrop-blur-sm">
+              {/* Background decorations */}
+              <div className="absolute -top-32 -right-32 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-primary/5 to-transparent rounded-full blur-3xl"></div>
+
+              <div className="relative z-10">
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full mb-4">
+                    <Mail className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
+                    Ready to get started?
+                  </h3>
+                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                    Join thousands of developers using our APIs to build amazing applications. 
+                    Need custom solutions? Our team is here to help you succeed.
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a href="mailto:fort@vtxgroup.my.id">
+                    <Button size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                      <Mail className="mr-2 h-5 w-5" />
+                      Contact Our Team
+                    </Button>
+                  </a>
+                  <Link href="/">
+                    <Button variant="outline" size="lg" className="w-full sm:w-auto border-primary/20 hover:bg-primary/5 px-8 py-3 rounded-xl font-semibold">
+                      <Globe className="mr-2 h-5 w-5" />
+                      Explore More
+                    </Button>
                   </Link>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+                </div>
 
-        {/* Contact Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="mt-16 p-8 bg-muted/50 rounded-xl border border-muted/80 relative overflow-hidden"
-        >
-          {/* Background decoration */}
-          <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
+                {/* Contact info */}
+                <div className="mt-8 pt-8 border-t border-primary/20 text-center">
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Response time: Usually within 24 hours
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-4 text-xs text-muted-foreground">
+                    <span className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      API Status: Operational
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      Uptime: 99.9%
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                      Support: 24/7
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-3 text-center md:text-left">
-              <h3 className="text-2xl font-bold">Need a custom API solution?</h3>
-              <p className="text-muted-foreground max-w-md">
-                Our team can develop tailored API solutions to meet your specific business requirements.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a href="mailto:fort@vtxgroup.my.id">
-                <Button size="lg" className="w-full sm:w-auto">
-                  Contact Us
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </Button>
-              </a>
-              <Link href="/">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                  Learn More
-                </Button>
-              </Link>
-            </div>
-          </div>
+          {/* API Statistics Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16"
+          >
+            {[
+              { label: "Total APIs", value: apis.length.toString(), icon: <Code2 className="h-5 w-5" />, color: "text-blue-600" },
+              { label: "Active Users", value: "10K+", icon: <Users className="h-5 w-5" />, color: "text-green-600" },
+              { label: "API Calls/Day", value: "1M+", icon: <Activity className="h-5 w-5" />, color: "text-purple-600" },
+              { label: "Uptime", value: "99.9%", icon: <Zap className="h-5 w-5" />, color: "text-orange-600" },
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center p-6 bg-gradient-to-br from-background to-muted/20 rounded-2xl border border-muted/50 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className={`inline-flex items-center justify-center p-3 bg-muted/50 rounded-full mb-4 ${stat.color}`}>
+                  {stat.icon}
+                </div>
+                <div className="space-y-1">
+                  <p className="text-2xl md:text-3xl font-bold">{stat.value}</p>
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </div>
   )
 }
